@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="dusk" x2="0" y2="1">
+      <stop stop-color="#202b63"/>
+      <stop offset=".42" stop-color="#8a5c9a"/>
+      <stop offset=".72" stop-color="#f0a17e"/>
+      <stop offset="1" stop-color="#293d62"/>
+    </linearGradient>
+    <linearGradient id="comet" x2="1" y2="0">
+      <stop stop-color="#fff5d6" stop-opacity="0"/>
+      <stop offset=".8" stop-color="#fff1bd"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#dusk)"/>
+  <circle cx="301" cy="146" r="19" fill="#fff4c8"/>
+  <path d="M92 268 300 146" stroke="url(#comet)" stroke-width="23" stroke-linecap="round"/>
+  <path d="M126 251 300 146" stroke="#fff9dd" stroke-width="2" opacity=".72"/>
+  <g fill="#fff7df" opacity=".92"><circle cx="46" cy="134" r="2"/><circle cx="196" cy="99" r="3"/><circle cx="348" cy="245" r="2"/><circle cx="72" cy="288" r="2"/><circle cx="275" cy="308" r="3"/></g>
+  <path d="M0 361 43 330l32 22 35-48 42 44 40-27 39 34 39-54 44 48 36-24 50 43v232H0z" fill="#222e4e"/>
+  <path d="M0 433h400v167H0z" fill="#293f5d" opacity=".72"/>
+  <path d="M0 467c59-28 122-14 181 7s113 21 219-20M0 509c75-32 129-4 184 9s120 16 216-18" fill="none" stroke="#f1b6a1" stroke-width="4" opacity=".68"/>
+  <path d="M33 377v74m51-62v61m234-86v77m41-66v69" stroke="#263347" stroke-width="6"/>
+  <g fill="#ffe0a2"><rect x="20" y="393" width="26" height="8"/><rect x="73" y="411" width="23" height="8"/><rect x="305" y="389" width="25" height="8"/><rect x="348" y="416" width="26" height="8"/></g>
+  <path d="M151 367c18-26 38-36 60-34 15 1 28 10 43 27" fill="none" stroke="#ffe7bd" stroke-width="3" opacity=".8"/>
+</svg>

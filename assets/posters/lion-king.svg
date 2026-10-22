@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="savannaSky" x2="0" y2="1">
+      <stop stop-color="#542d52"/>
+      <stop offset=".42" stop-color="#d76b53"/>
+      <stop offset=".7" stop-color="#f5c276"/>
+      <stop offset="1" stop-color="#31504a"/>
+    </linearGradient>
+    <radialGradient id="sun">
+      <stop stop-color="#fff0b8"/>
+      <stop offset="1" stop-color="#ffe1a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#savannaSky)"/>
+  <circle cx="213" cy="305" r="166" fill="url(#sun)"/>
+  <circle cx="213" cy="305" r="76" fill="#ffd98d" opacity=".93"/>
+  <path d="M0 391c71-28 122-3 179-11s133-41 221-14v234H0z" fill="#4d5945"/>
+  <path d="M0 444c89-36 148 10 221-11s118-26 179-9v176H0z" fill="#303f38"/>
+  <path d="M0 509c77-22 148-4 212-15s115-16 188 4v102H0z" fill="#203532"/>
+  <path d="M72 399V208m-2 89-60-48m64 23 61-79m-61 113 69-32m-66 62-56-25" fill="none" stroke="#293a31" stroke-width="18" stroke-linecap="round"/>
+  <path d="M326 401V278m0 56 41-42m-40 19-45-54" fill="none" stroke="#293a31" stroke-width="13" stroke-linecap="round"/>
+  <path d="M32 391c19-18 36-22 52-13m-61 45 24-13m272 1c16-15 32-18 47-9" fill="none" stroke="#dfa260" stroke-width="5" opacity=".77"/>
+  <g fill="#f8d993" opacity=".9"><path d="M165 452c0-12 8-21 18-21s18 9 18 21-8 15-18 15-18-3-18-15zm-7-8-13-13m60 12 13-13m-39 28v20"/></g>
+  <path d="M0 546c83-16 143 3 207-8s132-9 193 2" fill="none" stroke="#d4985f" stroke-width="4" opacity=".52"/>
+</svg>

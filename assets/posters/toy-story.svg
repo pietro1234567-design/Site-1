@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="toyRoom" x2="0" y2="1">
+      <stop stop-color="#56a9d1"/>
+      <stop offset=".58" stop-color="#b7d9dc"/>
+      <stop offset="1" stop-color="#e5b36a"/>
+    </linearGradient>
+    <linearGradient id="floor" x2="0" y2="1">
+      <stop stop-color="#41698d"/>
+      <stop offset="1" stop-color="#243f65"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#toyRoom)"/>
+  <circle cx="303" cy="125" r="64" fill="#fff0b8"/>
+  <path d="M0 363h400v237H0z" fill="url(#floor)"/>
+  <path d="M0 424h400M0 495h400M100 363v237m100-237v237m100-237v237" stroke="#a4c6d3" stroke-width="4" opacity=".42"/>
+  <path d="M35 341V213h79v128m134 0V179h72v162" fill="#f2b951" opacity=".9"/>
+  <path d="M35 247h79m-79 45h79m134-71h72m-72 46h72" stroke="#fff0cf" stroke-width="8" opacity=".68"/>
+  <path d="m120 355 23-85 25 85z" fill="#e87854"/>
+  <path d="M143 270v-45m0 0 13 17-13 6-13-6z" fill="#f6e8c0"/>
+  <circle cx="87" cy="174" r="24" fill="#f1c57b"/>
+  <path d="M76 198h24v36H76z" fill="#4b8aa9"/>
+  <path d="M63 212h50m-35 22-14 26m35-26 15 26" stroke="#d66f53" stroke-width="8" stroke-linecap="round"/>
+  <path d="M284 335c-4-45 11-75 41-77s44 35 34 77v52h-75z" fill="#d7a76a"/>
+  <circle cx="306" cy="278" r="5" fill="#382f3b"/><circle cx="329" cy="278" r="5" fill="#382f3b"/>
+  <path d="M308 296c8 9 16 9 24 0" fill="none" stroke="#754b45" stroke-width="4"/>
+  <path d="M8 337h384" stroke="#fff5d7" stroke-width="5" opacity=".72"/>
+  <g fill="#fff5d2"><path d="m201 89 8 17 19 2-14 12 5 18-18-10-16 10 4-18-14-12 19-2z"/><path d="m359 199 6 12 13 2-10 8 3 13-12-7-12 7 3-13-10-8 13-2z"/></g>
+</svg>

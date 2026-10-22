@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="mysteryNight" x2="0" y2="1">
+      <stop stop-color="#1d3c51"/>
+      <stop offset=".52" stop-color="#58735c"/>
+      <stop offset="1" stop-color="#182c35"/>
+    </linearGradient>
+    <radialGradient id="moonGlow">
+      <stop stop-color="#fff0bd"/>
+      <stop offset="1" stop-color="#f8dc9a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#mysteryNight)"/>
+  <circle cx="246" cy="186" r="139" fill="url(#moonGlow)"/>
+  <circle cx="246" cy="186" r="57" fill="#f5e5ac" opacity=".88"/>
+  <g fill="#17302e">
+    <path d="M-25 352 35 179l58 173H57l42 100H-7z"/>
+    <path d="M285 381 352 161l72 220h-49l42 105H268z"/>
+    <path d="M-15 443 39 293l58 150H70l36 91H-8z"/>
+    <path d="M303 455 360 287l60 168h-41l36 91h-98z"/>
+  </g>
+  <path d="M105 388h190v145H105z" fill="#9d6844"/>
+  <path d="m91 394 107-98 111 98z" fill="#493a39"/>
+  <path d="M134 425h34v46h-34zm90 0h34v46h-34z" fill="#f8c875"/>
+  <path d="M179 465h42v68h-42z" fill="#382f39"/>
+  <path d="M0 509c79-34 128 17 201-7s128 16 199-16v114H0z" fill="#13282d"/>
+  <g fill="#f8e8b7"><circle cx="74" cy="136" r="3"/><circle cx="333" cy="102" r="2"/><circle cx="128" cy="239" r="2"/><circle cx="301" cy="260" r="3"/></g>
+  <path d="M66 525c20-22 41-23 63-3m159 12c20-25 42-27 65-7" fill="none" stroke="#d6a56c" stroke-width="4" opacity=".66"/>
+</svg>

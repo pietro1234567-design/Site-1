@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema em Cia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="plex-shell">
+        <div class="main-shell">
+            <aside class="welcome-banner" id="welcomeBanner">
+                <div>
+                    <strong>Ei! Bem-vindo ao Cinema em Cia.</strong>
+                    <span>Descubra filmes gratuitos para assistir direto no Cinema em Cia.</span>
+                </div>
+                <button id="dismissWelcome" type="button" aria-label="Fechar aviso">×</button>
+            </aside>
+
+            <header class="topbar">
+                <a class="brand-logo" href="#home" aria-label="Cinema em Cia, início">
+                    <span class="brand-mark">C</span>
+                    <span>CineCia</span>
+                </a>
+
+                <nav class="top-nav" aria-label="Navegação principal">
+                    <button class="catalog-tab" type="button" data-category="home" aria-pressed="true">Início</button>
+                    <button class="catalog-tab" type="button" data-category="filmes" aria-pressed="false">Filmes</button>
+                    <button class="catalog-tab" type="button" data-category="gratis" aria-pressed="false">Grátis</button>
+                    <button class="catalog-tab" type="button" data-category="series" aria-pressed="false">Séries</button>
+                    <div class="nav-more">
+                        <button class="nav-more-toggle" id="navMoreToggle" type="button" aria-expanded="false" aria-controls="navMoreMenu">Categorias <span aria-hidden="true">⌄</span></button>
+                        <div class="nav-more-menu" id="navMoreMenu" hidden>
+                            <button class="catalog-tab" type="button" data-category="animes" aria-pressed="false">Animes</button>
+                            <button class="catalog-tab" type="button" data-category="desenhos" aria-pressed="false">Desenhos</button>
+                            <button class="catalog-tab" type="button" data-category="novidades" aria-pressed="false">Novidades</button>
+                            <button class="catalog-tab" type="button" data-category="cinema" aria-pressed="false">No cinema</button>
+                            <button class="catalog-tab" type="button" data-category="lancamentos" aria-pressed="false">Lançamentos</button>
+                        </div>
+                    </div>
+                    <button class="catalog-tab my-list-tab" id="myListTab" type="button" data-category="minha-lista" aria-pressed="false">
+                        Minha lista <span id="myListCount" aria-label="0 títulos salvos">0</span>
+                    </button>
+                    <a href="#sobre">Sobre</a>
+                </nav>
+
+                <div class="topbar-right">
+                    <div class="top-actions">
+                        <div class="search-box">
+                            <label class="search-wrap">
+                                <span class="search-icon" aria-hidden="true">⌕</span>
+                                <input id="movieSearch" type="search" placeholder="Buscar filmes e séries..." aria-label="Buscar filmes ou séries" aria-controls="searchResults" aria-expanded="false" autocomplete="off">
+                            </label>
+                            <div id="searchResults" class="search-results" role="listbox" aria-label="Resultados da busca" hidden></div>
+                        </div>
+                    </div>
+                    <a class="watch-link" href="#filmes"><span aria-hidden="true">▣</span> Assistir grátis</a>
+                    <button class="header-button profile-menu-button" id="profileMenuButton" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="profileModal">
+                        <span class="profile-avatar" id="activeProfileAvatar" aria-hidden="true">P</span>
+                        <span id="activeProfileName">Trocar perfil</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="streaming-main">
+        <section class="hero" id="home">
+            <div class="poster-mosaic" aria-hidden="true">
+                <img src="assets/posters/dune-part-two.jpg" alt="">
+                <img src="assets/posters/interstellar.jpg" alt="">
+                <img src="assets/posters/inception.jpg" alt="">
+                <img src="assets/posters/the-batman.jpg" alt="">
+                <img src="assets/posters/spider-verse.jpg" alt="">
+                <img src="assets/posters/breaking-bad.jpg" alt="">
+                <img src="assets/posters/wednesday.jpg" alt="">
+                <img src="assets/posters/avatar-way-of-water.jpg" alt="">
+                <img src="assets/posters/stranger-things.jpg" alt="">
+                <img src="assets/posters/inside-out-2.jpg" alt="">
+                <img src="assets/posters/inception.jpg" alt="">
+                <img src="assets/posters/dune-part-two.jpg" alt="">
+                <img src="assets/posters/stranger-things.jpg" alt="">
+                <img src="assets/posters/interstellar.jpg" alt="">
+                <img src="assets/posters/wednesday.jpg" alt="">
+                <img src="assets/posters/the-batman.jpg" alt="">
+                <img src="assets/posters/avatar-way-of-water.jpg" alt="">
+                <img src="assets/posters/spider-verse.jpg" alt="">
+                <img src="assets/posters/inside-out-2.jpg" alt="">
+                <img src="assets/posters/breaking-bad.jpg" alt="">
+                <img src="assets/posters/dune-part-two.jpg" alt="">
+                <img src="assets/posters/interstellar.jpg" alt="">
+                <img src="assets/posters/the-batman.jpg" alt="">
+                <img src="assets/posters/inside-out-2.jpg" alt="">
+            </div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <span class="hero-category-kicker" id="heroCategoryKicker" hidden></span>
+                <h1 id="heroTitle">Histórias para curtir do seu jeito.</h1>
+                <p id="heroDescription">Explore seu catálogo, salve favoritos e assista aos títulos gratuitos disponíveis no Cinema em Cia.</p>
+                <div class="hero-category-meta" id="heroCategoryMeta" hidden>
+                    <span id="heroCategoryYear"></span>
+                    <span id="heroCategoryType"></span>
+                    <span id="heroCategoryGenre"></span>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" id="featuredDetails" type="button">▶ Assistir filme grátis</button>
+                    <button class="btn btn-secondary" id="featuredMoreDetails" type="button" hidden>Mais informações</button>
+                    <button class="btn btn-secondary surprise-button" id="surpriseMeButton" type="button">✦ Surpreenda-me</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-catalog" id="categoryCatalog" aria-live="polite" hidden>
+            <div class="catalog-toolbar" aria-label="Filtros do catálogo">
+                <label class="catalog-search-label" for="catalogSearch">Buscar nesta categoria
+                    <input id="catalogSearch" type="search" placeholder="Título, gênero ou ano..." autocomplete="off">
+                </label>
+                <label for="catalogType">Tipo
+                    <select id="catalogType">
+                        <option value="all">Filmes e séries</option>
+                        <option value="filme">Filmes</option>
+                        <option value="serie">Séries</option>
+                    </select>
+                </label>
+                <label for="catalogGenre">Gênero
+                    <select id="catalogGenre">
+                        <option value="all">Todos os gêneros</option>
+                    </select>
+                </label>
+                <label for="catalogSort">Ordenar
+                    <select id="catalogSort">
+                        <option value="recommended">Recomendados</option>
+                        <option value="title">Título (A–Z)</option>
+                        <option value="newest">Mais recentes</option>
+                        <option value="oldest">Mais antigos</option>
+                    </select>
+                </label>
+                <div class="catalog-view-toggle" role="group" aria-label="Modo de exibição">
+                    <button type="button" data-catalog-view="grid" aria-pressed="true">Grade</button>
+                    <button type="button" data-catalog-view="list" aria-pressed="false">Lista</button>
+                </div>
+                <button class="catalog-reset" id="catalogReset" type="button">Limpar filtros</button>
+            </div>
+            <div class="catalog-quick-filters" id="catalogQuickFilters" aria-label="Atalhos de filtros">
+                <span class="quick-filter-label">Explorar</span>
+                <div class="quick-filter-group" role="group" aria-label="Tipo de título">
+                    <button class="quick-filter-chip" type="button" data-quick-type="all" aria-pressed="true">Tudo</button>
+                    <button class="quick-filter-chip" type="button" data-quick-type="filme" aria-pressed="false">Filmes</button>
+                    <button class="quick-filter-chip" type="button" data-quick-type="serie" aria-pressed="false">Séries</button>
+                    <button class="quick-filter-chip" type="button" data-quick-free="true" aria-pressed="false">▶ Grátis</button>
+                </div>
+                <div class="quick-filter-group quick-genre-filters" id="quickGenreFilters" role="group" aria-label="Gêneros populares"></div>
+            </div>
+            <p class="catalog-count" id="catalogCount" aria-live="polite"></p>
+            <div class="cinema-catalogs" id="cinemaCatalogs" hidden>
+                <section class="row cinema-listing" id="cinemaNowSection" aria-labelledby="cinemaNowHeading">
+                    <div class="row-header">
+                        <div>
+                            <h2 id="cinemaNowHeading">Em cartaz nos cinemas</h2>
+                            <p class="row-description" id="cinemaNowStatus" role="status">Carregando filmes em cartaz...</p>
+                        </div>
+                        <label class="cinema-city-picker" for="cinemaCitySelect">Cidade
+                            <select id="cinemaCitySelect" disabled aria-describedby="cinemaCityStatus">
+                                <option value="">Carregando cidades...</option>
+                            </select>
+                            <span id="cinemaCityStatus" class="cinema-city-status" role="status" aria-live="polite"></span>
+                        </label>
+                    </div>
+                    <div class="movie-row" id="cinemaNowMovies"></div>
+                </section>
+                <section class="row cinema-listing" id="cinemaRecentSection" aria-labelledby="cinemaRecentHeading">
+                    <div class="row-header">
+                        <div>
+                            <h2 id="cinemaRecentHeading">Lançamentos recentes e em breve</h2>
+                            <p class="row-description" id="cinemaRecentStatus" role="status">Carregando lançamentos...</p>
+                        </div>
+                    </div>
+                    <div class="movie-row" id="cinemaRecentMovies"></div>
+                </section>
+                <button class="catalog-reset cinema-retry" id="cinemaRetry" type="button" hidden>Tentar carregar novamente</button>
+                <p class="cinema-source">Programação e sessões fornecidas pela <a href="https://www.ingresso.com/" target="_blank" rel="noopener noreferrer">Ingresso.com</a>. Use os links para consultar opções oficiais na <a href="https://www.netflix.com/" target="_blank" rel="noopener noreferrer">Netflix</a> e em outros serviços; a disponibilidade pode variar. Os filmes de cinema não são reproduzidos neste site.</p>
+            </div>
+            <section class="row" id="categoryMoviesSection" hidden>
+                <div class="row-header">
+                    <div>
+                        <h2 id="categoryMoviesTitle">Filmes</h2>
+                        <p class="row-description" id="categoryMoviesDescription"></p>
+                    </div>
+                </div>
+                <div class="movie-row" id="categoryMovies"></div>
+            </section>
+            <section class="row" id="categorySeriesSection" hidden>
+                <div class="row-header">
+                    <div>
+                        <h2 id="categorySeriesTitle">Séries</h2>
+                        <p class="row-description" id="categorySeriesDescription"></p>
+                    </div>
+                </div>
+                <div class="movie-row" id="categorySeries"></div>
+            </section>
+            <div id="categoryEmptyState" class="category-empty" hidden>
+                <span class="category-empty-icon" aria-hidden="true">✦</span>
+                <h2 id="categoryEmptyTitle">Ainda não há títulos nesta categoria</h2>
+                <p id="categoryEmptyDescription"></p>
+            </div>
+        </section>
+
+        <section class="row" id="filmes">
+            <div class="row-header">
+                <div>
+                    <h2>Grátis para assistir aqui</h2>
+                    <p class="row-description">Clássicos e uma série de domínio público, reproduzidos dentro do site.</p>
+                </div>
+                <span class="free-label">100% grátis</span>
+            </div>
+
+            <div class="movie-row">
+                <article class="movie-card" data-title="His Girl Friday" data-genre="Comédia, Romance" data-type="filme" data-year="1940" data-runtime="1h 32min" data-description="A repórter Hildy Johnson está prestes a deixar o jornalismo para se casar, mas seu ex-marido e editor prepara uma última grande reportagem." data-poster="assets/posters/his-girl-friday.jpg" data-video="https://archive.org/download/HisGirlFriday1940_201808/HisGirlFriday1940.mp4" data-backdrop="assets/posters/his-girl-friday.jpg" data-license="Domínio público · Internet Archive">
+                    <img src="assets/posters/his-girl-friday.jpg" alt="Cena do filme His Girl Friday" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Comédia · Romance</span>
+                        <span class="card-year">1940 · Filme grátis</span>
+                        <h3>His Girl Friday</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="The General" data-genre="Comédia, Ação" data-type="filme" data-year="1926" data-runtime="1h 18min" data-description="Um maquinista de locomotiva embarca em uma aventura para recuperar seu trem e resgatar sua amada durante a Guerra Civil Americana." data-poster="assets/posters/the-general.jpg" data-video="https://dn600304.us.archive.org/0/items/TheGeneral1926/The_General_1926_720p_512kb.mp4" data-backdrop="assets/posters/the-general.jpg" data-license="Domínio público · Internet Archive">
+                    <img src="assets/posters/the-general.jpg" alt="Cena do filme The General" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Comédia · Ação</span>
+                        <span class="card-year">1926 · Filme grátis</span>
+                        <h3>The General</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="A Trip to the Moon" data-genre="Fantasia, Ficção científica" data-type="filme" data-year="1902" data-runtime="14 min" data-description="Um grupo de astrônomos viaja até a Lua em uma cápsula lançada por um canhão, nesta aventura pioneira de Georges Méliès." data-poster="assets/posters/trip-to-the-moon.jpg" data-video="https://archive.org/download/a-trip-to-the-moon-1902_202507/A%20Trip%20To%20The%20Moon%20%281902%29.mp4" data-backdrop="assets/posters/trip-to-the-moon.jpg" data-license="Domínio público · Internet Archive">
+                    <img src="assets/posters/trip-to-the-moon.jpg" alt="Cena do filme A Trip to the Moon" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Fantasia · Ficção científica</span>
+                        <span class="card-year">1902 · Filme grátis</span>
+                        <h3>A Trip to the Moon</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="The Adventures of Captain Marvel" data-genre="Aventura, Ação" data-type="serie" data-year="1941" data-runtime="12 episódios" data-description="Uma série clássica de aventuras em 12 capítulos: o herói Capitão Marvel enfrenta o Escorpião e tenta proteger uma antiga arma poderosa." data-poster="assets/posters/captain-marvel-serial.jpg" data-video="https://archive.org/download/TheAdventuresOfCaptainMarvelSerial194112Chapters/AdventuresOfCaptainMarvel_ch01.mp4" data-episode-template="https://archive.org/download/TheAdventuresOfCaptainMarvelSerial194112Chapters/AdventuresOfCaptainMarvel_ch{episode}.mp4" data-episode-count="12" data-backdrop="assets/posters/captain-marvel-serial.jpg" data-license="Série de domínio público · Internet Archive">
+                    <img src="assets/posters/captain-marvel-serial.jpg" alt="Cena da série The Adventures of Captain Marvel" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Aventura · Ação</span>
+                        <span class="card-year">1941 · Série grátis</span>
+                        <h3>The Adventures of Captain Marvel</h3>
+                    </div>
+                </article>
+            </div>
+            <p class="free-content-credit">
+                Fontes: <a href="https://archive.org/details/HisGirlFriday1940_201808" target="_blank" rel="noopener noreferrer">His Girl Friday</a>,
+                <a href="https://archive.org/details/TheGeneral1926" target="_blank" rel="noopener noreferrer">The General</a>,
+                <a href="https://archive.org/details/a-trip-to-the-moon-1902_202507" target="_blank" rel="noopener noreferrer">A Trip to the Moon</a> e
+                <a href="https://archive.org/details/TheAdventuresOfCaptainMarvelSerial194112Chapters" target="_blank" rel="noopener noreferrer">The Adventures of Captain Marvel</a>.
+                Os itens estão identificados como domínio público no Internet Archive.
+            </p>
+        </section>
+
+        <section class="row" id="em-alta">
+            <div class="row-header">
+                <h2>Em alta agora</h2>
+                <a href="#sobre">Ver tudo</a>
+            </div>
+
+            <div class="movie-row">
+                <article class="movie-card" data-title="Duna: Parte Dois" data-genre="Ficção científica, Aventura" data-type="filme" data-year="2024" data-runtime="2h 46min" data-description="Paul Atreides se une a Chani e aos Fremen em uma jornada de vingança e destino nos desertos de Arrakis." data-poster="assets/posters/dune-part-two.jpg" data-backdrop="assets/posters/dune-backdrop.jpg">
+                    <img src="assets/posters/dune-part-two.jpg" alt="Pôster de Duna: Parte Dois" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ficção científica · Aventura</span>
+                        <span class="card-year">2024 · Filme</span>
+                        <h3>Duna: Parte Dois</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Interestelar" data-genre="Ficção científica, Drama" data-type="filme" data-year="2014" data-runtime="2h 49min" data-description="Uma equipe de exploradores viaja além desta galáxia para descobrir se a humanidade pode encontrar um novo lar." data-poster="assets/posters/interstellar.jpg">
+                    <img src="assets/posters/interstellar.jpg" alt="Pôster de Interestelar" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ficção científica · Drama</span>
+                        <span class="card-year">2014 · Filme</span>
+                        <h3>Interestelar</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="A Origem" data-genre="Ficção científica, Ação" data-type="filme" data-year="2010" data-runtime="2h 28min" data-description="Um ladrão especializado em invadir sonhos recebe a missão quase impossível de implantar uma ideia na mente de alguém." data-poster="assets/posters/inception.jpg">
+                    <img src="assets/posters/inception.jpg" alt="Pôster de A Origem" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ficção científica · Ação</span>
+                        <span class="card-year">2010 · Filme</span>
+                        <h3>A Origem</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Batman" data-genre="Ação, Crime" data-type="filme" data-year="2022" data-runtime="2h 56min" data-description="Em seu segundo ano combatendo o crime, Batman investiga uma série de enigmas que ameaça revelar a corrupção de Gotham." data-poster="assets/posters/the-batman.jpg">
+                    <img src="assets/posters/the-batman.jpg" alt="Pôster de Batman" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ação · Crime</span>
+                        <span class="card-year">2022 · Filme</span>
+                        <h3>Batman</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Homem-Aranha: Através do Aranhaverso" data-genre="Animação, Aventura" data-type="filme" data-year="2023" data-runtime="2h 20min" data-description="Miles Morales atravessa o multiverso e encontra uma equipe de heróis-aranha diante de uma nova ameaça." data-poster="assets/posters/spider-verse.jpg">
+                    <img src="assets/posters/spider-verse.jpg" alt="Pôster de Homem-Aranha: Através do Aranhaverso" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Aventura</span>
+                        <span class="card-year">2023 · Filme</span>
+                        <h3>Homem-Aranha: Através do Aranhaverso</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="feature-banner" id="colecao">
+            <div class="feature-text">
+                <span class="eyebrow">Coleção especial</span>
+                <h2>Filmes que te prendem do começo ao fim.</h2>
+                <p>Encontre thrillers intensos, romances emocionantes e histórias épicas para cada momento da sua noite.</p>
+                <a class="btn btn-primary" href="#novidades">Explorar coleção</a>
+            </div>
+            <div class="feature-poster">
+                <img src="assets/posters/collection-cinema.jpg" alt="Imagem da coleção de filmes" loading="lazy" decoding="async">
+            </div>
+        </section>
+
+        <section class="row" id="novidades">
+            <div class="row-header">
+                <h2>Novidades</h2>
+                <a href="#sobre">Ver todos</a>
+            </div>
+
+            <div class="movie-row compact-row">
+                <article class="movie-card" data-title="Breaking Bad" data-genre="Drama, Crime" data-type="serie" data-year="2008" data-runtime="5 temporadas" data-description="Um professor de química diagnosticado com câncer passa a produzir metanfetamina para garantir o futuro de sua família." data-poster="assets/posters/breaking-bad.jpg">
+                    <img src="assets/posters/breaking-bad.jpg" alt="Pôster da série Breaking Bad" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Drama · Crime</span>
+                        <span class="card-year">2008 · Série</span>
+                        <h3>Breaking Bad</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Wandinha" data-genre="Mistério, Fantasia" data-type="serie" data-year="2022" data-runtime="2 temporadas" data-description="Wandinha Addams investiga mistérios sobrenaturais enquanto tenta controlar seus poderes na Escola Nunca Mais." data-poster="assets/posters/wednesday.jpg">
+                    <img src="assets/posters/wednesday.jpg" alt="Pôster da série Wandinha" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Mistério · Fantasia</span>
+                        <span class="card-year">2022 · Série</span>
+                        <h3>Wandinha</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Avatar: O Caminho da Água" data-genre="Ficção científica, Aventura" data-type="filme" data-year="2022" data-runtime="3h 12min" data-description="Jake Sully e Neytiri protegem sua família e buscam refúgio entre os clãs dos oceanos de Pandora." data-poster="assets/posters/avatar-way-of-water.jpg">
+                    <img src="assets/posters/avatar-way-of-water.jpg" alt="Pôster de Avatar: O Caminho da Água" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ficção científica · Aventura</span>
+                        <span class="card-year">2022 · Filme</span>
+                        <h3>Avatar: O Caminho da Água</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Stranger Things" data-genre="Ficção científica, Terror" data-type="serie" data-year="2016" data-runtime="4 temporadas" data-description="Em uma pequena cidade, o desaparecimento de um garoto revela experimentos secretos e uma dimensão aterradora." data-poster="assets/posters/stranger-things.jpg">
+                    <img src="assets/posters/stranger-things.jpg" alt="Pôster da série Stranger Things" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Ficção científica · Terror</span>
+                        <span class="card-year">2016 · Série</span>
+                        <h3>Stranger Things</h3>
+                    </div>
+                </article>
+
+                <article class="movie-card" data-title="Divertida Mente 2" data-genre="Animação, Comédia" data-type="filme" data-year="2024" data-runtime="1h 36min" data-description="Riley entra na adolescência e conhece novas emoções que mudam a rotina do centro de controle da sua mente." data-poster="assets/posters/inside-out-2.jpg">
+                    <img src="assets/posters/inside-out-2.jpg" alt="Pôster de Divertida Mente 2" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Comédia</span>
+                        <span class="card-year">2024 · Filme</span>
+                        <h3>Divertida Mente 2</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row" id="home-animes">
+            <div class="row-header">
+                <div>
+                    <h2>Animes</h2>
+                    <p class="row-description">Séries e filmes de anime com seus pôsteres de capa.</p>
+                </div>
+            </div>
+            <div class="movie-row">
+                <article class="movie-card" data-title="Demon Slayer" data-genre="Anime, Ação, Fantasia" data-type="serie" data-anime="true" data-year="2019" data-runtime="4 temporadas" data-description="Um jovem embarca em uma jornada perigosa para proteger sua irmã e enfrentar criaturas sobrenaturais." data-poster="assets/posters/demon-slayer-cover.jpg">
+                    <img src="assets/posters/demon-slayer-cover.jpg" alt="Pôster da série Demon Slayer" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Anime · Ação</span>
+                        <span class="card-year">2019 · Série</span>
+                        <h3>Demon Slayer</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="Naruto" data-genre="Anime, Aventura, Ação" data-type="serie" data-anime="true" data-year="2002" data-runtime="9 temporadas" data-description="Um jovem ninja determinado busca reconhecimento e enfrenta desafios ao lado de seus companheiros." data-poster="assets/posters/naruto-cover.jpg">
+                    <img src="assets/posters/naruto-cover.jpg" alt="Pôster da série Naruto" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Anime · Aventura</span>
+                        <span class="card-year">2002 · Série</span>
+                        <h3>Naruto</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="One Piece" data-genre="Anime, Aventura, Fantasia" data-type="serie" data-anime="true" data-year="1999" data-runtime="Mais de 20 temporadas" data-description="Um grupo de amigos cruza os mares em busca de um lendário tesouro e de novas aventuras." data-poster="assets/posters/one-piece-cover.jpg">
+                    <img src="assets/posters/one-piece-cover.jpg" alt="Pôster da série One Piece" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Anime · Aventura</span>
+                        <span class="card-year">1999 · Série</span>
+                        <h3>One Piece</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="A Viagem de Chihiro" data-genre="Anime, Fantasia, Aventura" data-type="filme" data-anime="true" data-year="2001" data-runtime="2h 5min" data-description="Durante uma mudança, uma garota entra em um mundo fantástico e precisa encontrar o caminho de volta para casa." data-poster="assets/posters/spirited-away-cover.jpg">
+                    <img src="assets/posters/spirited-away-cover.jpg" alt="Pôster do filme A Viagem de Chihiro" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Anime · Fantasia</span>
+                        <span class="card-year">2001 · Filme</span>
+                        <h3>A Viagem de Chihiro</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="Your Name" data-genre="Anime, Romance, Fantasia" data-type="filme" data-anime="true" data-year="2016" data-runtime="1h 46min" data-description="Dois jovens começam a trocar de corpo em sonhos e tentam compreender a conexão misteriosa entre suas vidas." data-poster="assets/posters/your-name-cover.jpg">
+                    <img src="assets/posters/your-name-cover.jpg" alt="Pôster do filme Your Name" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Anime · Romance</span>
+                        <span class="card-year">2016 · Filme</span>
+                        <h3>Your Name</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row" id="home-desenhos">
+            <div class="row-header">
+                <div>
+                    <h2>Desenhos e animações</h2>
+                    <p class="row-description">Filmes e séries animados, organizados em uma coleção própria. Cartazes: TVmaze e TMDB.</p>
+                </div>
+            </div>
+            <div class="movie-row">
+                <article class="movie-card" data-title="Avatar: A Lenda de Aang" data-genre="Animação, Aventura, Fantasia" data-type="serie" data-year="2005" data-runtime="3 temporadas" data-description="Um jovem destinado a restaurar o equilíbrio aprende a dominar forças da natureza e a trabalhar em equipe." data-poster="https://static.tvmaze.com/uploads/images/original_untouched/79/199224.jpg">
+                    <img src="https://static.tvmaze.com/uploads/images/original_untouched/79/199224.jpg" alt="Pôster da série Avatar: A Lenda de Aang" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Aventura</span>
+                        <span class="card-year">2005 · Série</span>
+                        <h3>Avatar: A Lenda de Aang</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="Gravity Falls" data-genre="Animação, Mistério, Comédia" data-type="serie" data-year="2012" data-runtime="2 temporadas" data-description="Dois irmãos passam as férias em uma cidade cheia de mistérios, criaturas curiosas e segredos escondidos." data-poster="https://static.tvmaze.com/uploads/images/original_untouched/2/6140.jpg">
+                    <img src="https://static.tvmaze.com/uploads/images/original_untouched/2/6140.jpg" alt="Pôster da série Gravity Falls" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Mistério</span>
+                        <span class="card-year">2012 · Série</span>
+                        <h3>Gravity Falls</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="Bluey" data-genre="Animação, Família, Comédia" data-type="serie" data-year="2018" data-runtime="3 temporadas" data-description="Uma cachorrinha curiosa transforma brincadeiras do dia a dia em aventuras com sua família e amigos." data-poster="https://static.tvmaze.com/uploads/images/original_untouched/512/1281879.jpg">
+                    <img src="https://static.tvmaze.com/uploads/images/original_untouched/512/1281879.jpg" alt="Pôster da série Bluey" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Família</span>
+                        <span class="card-year">2018 · Série</span>
+                        <h3>Bluey</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="Toy Story" data-genre="Animação, Comédia, Aventura" data-type="filme" data-year="1995" data-runtime="1h 21min" data-description="Os brinquedos de um garoto vivem aventuras e descobrem como lidar com mudanças e novas amizades." data-poster="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg">
+                    <img src="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg" alt="Pôster do filme Toy Story" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Comédia</span>
+                        <span class="card-year">1995 · Filme</span>
+                        <h3>Toy Story</h3>
+                    </div>
+                </article>
+                <article class="movie-card" data-title="O Rei Leão" data-genre="Animação, Aventura, Drama" data-type="filme" data-year="1994" data-runtime="1h 28min" data-description="Um jovem leão enfrenta desafios e descobre seu lugar em uma comunidade da savana." data-poster="https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg">
+                    <img src="https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg" alt="Pôster do filme O Rei Leão" loading="lazy" decoding="async">
+                    <div class="card-info">
+                        <span class="movie-badge">Animação · Aventura</span>
+                        <span class="card-year">1994 · Filme</span>
+                        <h3>O Rei Leão</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div id="searchStatus" class="search-status" hidden>
+            Nenhum resultado encontrado para sua busca.
+        </div>
+
+        <div id="profileModal" class="profile-modal profile-picker-screen" aria-hidden="false">
+            <div class="profile-backdrop" data-close-profile="true"></div>
+            <section class="profile-window" role="dialog" aria-modal="true" aria-labelledby="profileHeading">
+                <button class="close-btn profile-close" id="closeProfileModal" type="button" aria-label="Fechar perfis">×</button>
+                <a class="brand-logo profile-brand" href="#home" aria-label="Cinema em Cia, início">
+                    <span class="brand-mark">C</span>
+                    <span>CineCia</span>
+                </a>
+                <p class="profile-kicker">SEU CINEMA, DO SEU JEITO</p>
+                <h2 id="profileHeading">Quem está assistindo?</h2>
+                <p class="profile-intro">Escolha seu perfil para abrir sua lista e continuar explorando.</p>
+                <div class="profile-list" id="profileList"></div>
+                <div class="profile-manager-actions">
+                    <button class="profile-manage-toggle" id="profileManageToggle" type="button" aria-pressed="false">Gerenciar perfis</button>
+                    <button class="profile-add-toggle" id="profileAddToggle" type="button" aria-expanded="false">＋ Adicionar perfil</button>
+                </div>
+                <form class="profile-create-form" id="profileCreateForm">
+                    <label for="profileNameInput">Criar um perfil</label>
+                    <div class="profile-create-controls">
+                        <input id="profileNameInput" name="profileName" type="text" maxlength="20" placeholder="Nome do perfil" autocomplete="off" required>
+                        <button class="btn btn-primary" id="createProfileButton" type="submit">Adicionar</button>
+                    </div>
+                </form>
+                <p class="profile-status" id="profileStatus" role="status" aria-live="polite"></p>
+            </section>
+        </div>
+
+        <div id="mediaModal" class="media-modal hidden" aria-hidden="true">
+            <div class="modal-backdrop" data-close="true"></div>
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <button class="close-btn" aria-label="Fechar">×</button>
+
+                <div id="mediaDetailsView">
+                <header class="modal-header">
+                    <a class="brand-logo" href="#home" aria-label="Cinema em Cia">
+                        <span class="brand-mark">C</span>
+                        <span>CineCia</span>
+                    </a>
+                    <span class="modal-header-caption">Detalhes do título</span>
+                </header>
+
+                <div class="detail-hero">
+                    <div class="detail-copy">
+                        <h3 id="modalTitle">Título</h3>
+                        <div class="modal-meta">
+                            <span id="modalYear">2026</span>
+                            <span id="modalRuntime">2h 00m</span>
+                            <span id="modalGenre">Drama</span>
+                        </div>
+                        <div class="detail-score-row">
+                            <span id="modalBadge" class="movie-badge">Filme</span>
+                        </div>
+                        <p id="modalDescription">Descrição do filme ou série.</p>
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" id="playMediaButton" type="button" hidden>▶ Assistir agora</button>
+                            <button class="btn btn-secondary" id="modalWatchlistButton" type="button" aria-pressed="false">＋ Minha lista</button>
+                            <a class="btn btn-secondary cinema-modal-link" id="modalCinemaSessions" target="_blank" rel="noopener noreferrer" hidden>Ver sessões</a>
+                            <a class="btn btn-secondary cinema-modal-link" id="modalStreamingSearch" target="_blank" rel="noopener noreferrer" hidden>Onde assistir</a>
+                            <a class="btn btn-secondary cinema-modal-link netflix-modal-link" id="modalNetflixSearch" target="_blank" rel="noopener noreferrer" hidden>Buscar na Netflix</a>
+                        </div>
+                        <p class="watchlist-status" id="watchlistStatus" role="status" hidden></p>
+                        <p class="availability-note" id="availabilityNote"></p>
+                    </div>
+
+                    <div class="detail-visual">
+                        <img id="modalPoster" src="" alt="Poster do conteúdo">
+                    </div>
+                </div>
+
+                <section class="detail-section" aria-labelledby="modalCastHeading">
+                    <h4 id="modalCastHeading">Elenco principal</h4>
+                    <ul class="cast-list" id="modalCast"></ul>
+                </section>
+                <section class="detail-section" id="modalDirectorSection" aria-labelledby="modalDirectorHeading" hidden>
+                    <h4 id="modalDirectorHeading">Direção</h4>
+                    <ul class="cast-list" id="modalDirector"></ul>
+                </section>
+                <section class="detail-section similar-section" aria-labelledby="modalSimilarHeading">
+                    <h4 id="modalSimilarHeading">Você também pode gostar</h4>
+                    <div class="similar-row" id="modalSimilar"></div>
+                </section>
+                </div>
+
+                <section class="actor-profile" id="actorProfileView" aria-labelledby="actorProfileName" hidden>
+                    <button class="actor-back-button" id="actorProfileBack" type="button">← Voltar ao filme</button>
+                    <p class="actor-profile-kicker">Histórico do artista</p>
+                    <h3 id="actorProfileName"></h3>
+                    <p class="actor-profile-bio" id="actorProfileBio"></p>
+                    <section class="actor-profile-section" aria-labelledby="actorWorksHeading">
+                        <h4 id="actorWorksHeading">Filmes e séries conhecidos</h4>
+                        <ul id="actorProfileWorks"></ul>
+                    </section>
+                    <section class="actor-profile-section" aria-labelledby="actorAwardsHeading">
+                        <h4 id="actorAwardsHeading">Prêmios e indicações</h4>
+                        <p id="actorProfileAwards"></p>
+                    </section>
+                    <section class="actor-profile-section" aria-labelledby="actorCatalogHeading">
+                        <h4 id="actorCatalogHeading">Filmes e séries com este artista</h4>
+                        <div class="actor-filmography-row" id="actorCatalogWorks"></div>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <div id="playerModal" class="player-modal hidden" aria-hidden="true">
+            <div class="player-backdrop"></div>
+            <section class="player-window" role="dialog" aria-modal="true" aria-labelledby="playerTitle">
+                <header class="player-header">
+                    <a class="brand-logo" href="#home" aria-label="Cinema em Cia">
+                        <span class="brand-mark">C</span>
+                        <span>CineCia</span>
+                    </a>
+                    <h2 id="playerTitle">Reproduzindo filme</h2>
+                    <button id="closePlayer" class="close-btn player-close" type="button" aria-label="Fechar player">×</button>
+                </header>
+                <video id="videoPlayer" controls playsinline preload="metadata"></video>
+                <p id="playerStatus" class="player-status" aria-live="polite">Carregando vídeo...</p>
+                <p class="player-attribution">Vídeo de domínio público hospedado pelo Internet Archive.</p>
+            </section>
+        </div>
+
+        <section class="info-strip" id="sobre">
+            <div class="info-item">
+                <strong>4.9/5</strong>
+                <span>Avaliação dos usuários</span>
+            </div>
+            <div class="info-item">
+                <strong>1.8k+</strong>
+                <span>Novos títulos</span>
+            </div>
+            <div class="info-item">
+                <strong>HD</strong>
+                <span>Qualidade premium</span>
+            </div>
+        </section>
+        <p class="poster-credit">Pôsteres de filmes comerciais: TMDB. Pôsteres de anime: <a href="https://myanimelist.net/" target="_blank" rel="noopener noreferrer">MyAnimeList</a>. Filmes de domínio público: Internet Archive. Programação dos cinemas: <a href="https://www.ingresso.com/" target="_blank" rel="noopener noreferrer">Ingresso.com</a>.</p>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('movieSearch');
+        const searchResults = document.getElementById('searchResults');
+        const movieCards = document.querySelectorAll('.movie-card');
+        const searchStatus = document.getElementById('searchStatus');
+        const modal = document.getElementById('mediaModal');
+        const modalContent = document.querySelector('.modal-content');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalBadge = document.getElementById('modalBadge');
+        const modalYear = document.getElementById('modalYear');
+        const modalRuntime = document.getElementById('modalRuntime');
+        const modalGenre = document.getElementById('modalGenre');
+        const modalPoster = document.getElementById('modalPoster');
+        const modalCast = document.getElementById('modalCast');
+        const modalSimilar = document.getElementById('modalSimilar');
+        const modalCastHeading = document.getElementById('modalCastHeading');
+        const modalDirectorSection = document.getElementById('modalDirectorSection');
+        const modalDirector = document.getElementById('modalDirector');
+        const modalCinemaSessions = document.getElementById('modalCinemaSessions');
+        const modalStreamingSearch = document.getElementById('modalStreamingSearch');
+        const modalNetflixSearch = document.getElementById('modalNetflixSearch');
+        const modalWatchlistButton = document.getElementById('modalWatchlistButton');
+        const watchlistStatus = document.getElementById('watchlistStatus');
+        const myListCount = document.getElementById('myListCount');
+        const profileModal = document.getElementById('profileModal');
+        const profileList = document.getElementById('profileList');
+        const profileMenuButton = document.getElementById('profileMenuButton');
+        const activeProfileName = document.getElementById('activeProfileName');
+        const activeProfileAvatar = document.getElementById('activeProfileAvatar');
+        const profileCreateForm = document.getElementById('profileCreateForm');
+        const profileNameInput = document.getElementById('profileNameInput');
+        const profileStatus = document.getElementById('profileStatus');
+        const profileManageToggle = document.getElementById('profileManageToggle');
+        const profileAddToggle = document.getElementById('profileAddToggle');
+        const surpriseMeButton = document.getElementById('surpriseMeButton');
+        const mediaDetailsView = document.getElementById('mediaDetailsView');
+        const actorProfileView = document.getElementById('actorProfileView');
+        const actorProfileBack = document.getElementById('actorProfileBack');
+        const actorProfileName = document.getElementById('actorProfileName');
+        const actorProfileBio = document.getElementById('actorProfileBio');
+        const actorProfileWorks = document.getElementById('actorProfileWorks');
+        const actorProfileAwards = document.getElementById('actorProfileAwards');
+        const actorCatalogWorks = document.getElementById('actorCatalogWorks');
+        const playMediaButton = document.getElementById('playMediaButton');
+        const availabilityNote = document.getElementById('availabilityNote');
+        const playerModal = document.getElementById('playerModal');
+        const playerTitle = document.getElementById('playerTitle');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playerStatus = document.getElementById('playerStatus');
+        const closePlayerButton = document.getElementById('closePlayer');
+        const closeButton = modal.querySelector('.close-btn');
+        const featuredDetails = document.getElementById('featuredDetails');
+        const welcomeBanner = document.getElementById('welcomeBanner');
+        const dismissWelcome = document.getElementById('dismissWelcome');
+        const categoryTabs = document.querySelectorAll('.catalog-tab');
+        const navMore = document.querySelector('.nav-more');
+        const navMoreToggle = document.getElementById('navMoreToggle');
+        const navMoreMenu = document.getElementById('navMoreMenu');
+        const categoryRows = document.querySelectorAll('.streaming-main > .row');
+        const categoryCatalog = document.getElementById('categoryCatalog');
+        const catalogToolbar = document.querySelector('.catalog-toolbar');
+        const cinemaCatalogs = document.getElementById('cinemaCatalogs');
+        const cinemaNowSection = document.getElementById('cinemaNowSection');
+        const cinemaRecentSection = document.getElementById('cinemaRecentSection');
+        const cinemaNowStatus = document.getElementById('cinemaNowStatus');
+        const cinemaRecentStatus = document.getElementById('cinemaRecentStatus');
+        const cinemaNowMovies = document.getElementById('cinemaNowMovies');
+        const cinemaRecentMovies = document.getElementById('cinemaRecentMovies');
+        const cinemaRetry = document.getElementById('cinemaRetry');
+        const cinemaCitySelect = document.getElementById('cinemaCitySelect');
+        const cinemaCityStatus = document.getElementById('cinemaCityStatus');
+        const categoryMoviesSection = document.getElementById('categoryMoviesSection');
+        const categorySeriesSection = document.getElementById('categorySeriesSection');
+        const categoryMovies = document.getElementById('categoryMovies');
+        const categorySeries = document.getElementById('categorySeries');
+        const categoryEmptyState = document.getElementById('categoryEmptyState');
+        const categoryEmptyTitle = document.getElementById('categoryEmptyTitle');
+        const categoryEmptyDescription = document.getElementById('categoryEmptyDescription');
+        const categoryMoviesTitle = document.getElementById('categoryMoviesTitle');
+        const categoryMoviesDescription = document.getElementById('categoryMoviesDescription');
+        const categorySeriesTitle = document.getElementById('categorySeriesTitle');
+        const categorySeriesDescription = document.getElementById('categorySeriesDescription');
+        const catalogSearch = document.getElementById('catalogSearch');
+        const catalogType = document.getElementById('catalogType');
+        const catalogGenre = document.getElementById('catalogGenre');
+        const catalogSort = document.getElementById('catalogSort');
+        const catalogCount = document.getElementById('catalogCount');
+        const catalogReset = document.getElementById('catalogReset');
+        const catalogQuickFilters = document.getElementById('catalogQuickFilters');
+        const quickGenreFilters = document.getElementById('quickGenreFilters');
+        const quickTypeFilters = document.querySelectorAll('[data-quick-type]');
+        const quickFreeFilter = document.querySelector('[data-quick-free]');
+        const catalogViewButtons = document.querySelectorAll('[data-catalog-view]');
+        const featureBanner = document.querySelector('.feature-banner');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroDescription = document.getElementById('heroDescription');
+        const heroActions = document.querySelector('.hero-actions');
+        const featuredDetailsLabel = document.getElementById('featuredDetails');
+        const featuredMoreDetails = document.getElementById('featuredMoreDetails');
+        const heroCategoryKicker = document.getElementById('heroCategoryKicker');
+        const heroCategoryMeta = document.getElementById('heroCategoryMeta');
+        const heroCategoryYear = document.getElementById('heroCategoryYear');
+        const heroCategoryType = document.getElementById('heroCategoryType');
+        const heroCategoryGenre = document.getElementById('heroCategoryGenre');
+        const hero = document.querySelector('.hero');
+        const heroMosaic = document.querySelector('.poster-mosaic');
+        const homeMosaicPosters = [...heroMosaic.querySelectorAll('img')].map((image) => image.getAttribute('src'));
+        let selectedCard = null;
+        let featuredCategoryCard = null;
+        let currentEpisode = 1;
+        let activeCategory = 'home';
+        let genreOptionsCategory = '';
+        let onlyFreeTitles = false;
+        let savedTitles = new Set();
+        let profiles = [{ id: 'default', name: 'Meu perfil', savedTitles: [] }];
+        let activeProfileId = 'default';
+        let isProfileStartup = true;
+        let isManagingProfiles = false;
+        let watchlistStorageError = null;
+        let cinemaNowPlaying = [];
+        let cinemaComingSoon = [];
+        let cinemaNowState = 'loading';
+        let cinemaComingSoonState = 'loading';
+        let cinemaCity = '';
+        let cinemaCities = [];
+        let cinemaLoadGeneration = 0;
+        let cinemaCityState = 'loading';
+        let cinemaNowError = '';
+        let cinemaComingSoonError = '';
+
+        try {
+            const storedProfileState = JSON.parse(localStorage.getItem('cinecia-profile-state') || 'null');
+            const storedProfiles = storedProfileState?.profiles;
+            if (Array.isArray(storedProfiles) && storedProfiles.length > 0) {
+                profiles = storedProfiles
+                    .filter((profile) => profile && typeof profile.id === 'string' && typeof profile.name === 'string')
+                    .slice(0, 5)
+                    .map((profile) => ({
+                        id: profile.id,
+                        name: profile.name.slice(0, 20),
+                        savedTitles: Array.isArray(profile.savedTitles)
+                            ? [...new Set(profile.savedTitles.filter((title) => typeof title === 'string'))]
+                            : []
+                    }));
+                if (profiles.length === 0) {
+                    profiles = [{ id: 'default', name: 'Meu perfil', savedTitles: [] }];
+                }
+            } else {
+                const storedTitles = JSON.parse(localStorage.getItem('cinecia-my-list') || '[]');
+                if (Array.isArray(storedTitles)) {
+                    profiles[0].savedTitles = [...new Set(storedTitles.filter((title) => typeof title === 'string'))];
+                }
+            }
+            const storedActiveProfileId = storedProfileState?.activeProfileId;
+            if (profiles.some((profile) => profile.id === storedActiveProfileId)) {
+                activeProfileId = storedActiveProfileId;
+            }
+            savedTitles = new Set(profiles.find((profile) => profile.id === activeProfileId).savedTitles);
+        } catch (error) {
+            watchlistStorageError = error;
+            console.error('Não foi possível carregar Minha lista do armazenamento local.', error);
+        }
+
+        const categoryCopy = {
+            home: {
+                title: 'Encontre filmes gratuitos e assista aqui mesmo.',
+                description: 'Escolha um clássico de domínio público e reproduza o filme direto no Cinema em Cia, sem sair do site.'
+            },
+            filmes: {
+                title: 'Filmes para todas as noites.',
+                description: 'Explore todos os filmes do catálogo e encontre sua próxima história.'
+            },
+            gratis: {
+                title: 'Assista grátis no Cinema em Cia.',
+                description: 'Filmes e séries com reprodução disponível neste site, sem custo.'
+            },
+            series: {
+                title: 'Séries para maratonar.',
+                description: 'Encontre as séries do catálogo e escolha o que assistir.'
+            },
+            animes: {
+                title: 'Animes para assistir.',
+                description: 'Filmes e séries de anime em uma coleção dedicada.'
+            },
+            desenhos: {
+                title: 'Desenhos e animações.',
+                description: 'Filmes e séries animados reunidos em uma coleção.'
+            },
+            novidades: {
+                title: 'Novidades do catálogo.',
+                description: 'Veja filmes e séries em destaque no catálogo.'
+            },
+            cinema: {
+                title: 'Filmes em cartaz nos cinemas.',
+                description: 'Confira os filmes em exibição e consulte sessões na Ingresso.com.'
+            },
+            lancamentos: {
+                title: 'Lançamentos recentes e em breve.',
+                description: 'Descubra estreias recentes e os próximos lançamentos nos cinemas.'
+            },
+            'minha-lista': {
+                title: 'Minha lista.',
+                description: 'Seus filmes e séries salvos para encontrar e assistir quando quiser.'
+            }
+        };
+
+        const categoryFeaturedTitles = {
+            filmes: 'Duna: Parte Dois',
+            gratis: 'His Girl Friday',
+            series: 'Stranger Things',
+            animes: 'Demon Slayer',
+            desenhos: 'Homem-Aranha: Através do Aranhaverso',
+            novidades: 'Avatar: O Caminho da Água'
+        };
+
+        const titleCast = {
+            'His Girl Friday': ['Rosalind Russell', 'Cary Grant', 'Ralph Bellamy'],
+            'The General': ['Buster Keaton', 'Marion Mack', 'Glen Cavender'],
+            'A Trip to the Moon': ['Georges Méliès', 'Bleuette Bernon', 'François Lallement'],
+            'The Adventures of Captain Marvel': ['Tom Tyler', 'Frank Coghlan Jr.', 'Louise Currie'],
+            'Duna: Parte Dois': ['Timothée Chalamet', 'Zendaya', 'Rebecca Ferguson', 'Javier Bardem'],
+            'Interestelar': ['Matthew McConaughey', 'Anne Hathaway', 'Jessica Chastain', 'Michael Caine'],
+            'A Origem': ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Elliot Page', 'Tom Hardy'],
+            Batman: ['Robert Pattinson', 'Zoë Kravitz', 'Paul Dano', 'Jeffrey Wright'],
+            'Homem-Aranha: Através do Aranhaverso': ['Shameik Moore', 'Hailee Steinfeld', 'Brian Tyree Henry', 'Jake Johnson'],
+            'Breaking Bad': ['Bryan Cranston', 'Aaron Paul', 'Anna Gunn', 'Dean Norris'],
+            'Wandinha': ['Jenna Ortega', 'Emma Myers', 'Catherine Zeta-Jones', 'Gwendoline Christie'],
+            'Avatar: O Caminho da Água': ['Sam Worthington', 'Zoe Saldaña', 'Sigourney Weaver', 'Stephen Lang'],
+            'Stranger Things': ['Millie Bobby Brown', 'Finn Wolfhard', 'Winona Ryder', 'David Harbour'],
+            'Divertida Mente 2': ['Amy Poehler', 'Maya Hawke', 'Kensington Tallman', 'Lewis Black'],
+            'Demon Slayer': ['Natsuki Hanae', 'Akari Kitō', 'Hiro Shimono', 'Yoshitsugu Matsuoka'],
+            Naruto: ['Junko Takeuchi', 'Chie Nakamura', 'Noriaki Sugiyama', 'Kazuhiko Inoue'],
+            'One Piece': ['Mayumi Tanaka', 'Kazuya Nakai', 'Akemi Okamura', 'Kappei Yamaguchi'],
+            'A Viagem de Chihiro': ['Rumi Hiiragi', 'Miyu Irino', 'Mari Natsuki'],
+            'Your Name': ['Ryunosuke Kamiki', 'Mone Kamishiraishi', 'Masami Nagasawa'],
+            'Avatar: A Lenda de Aang': ['Zach Tyler Eisen', 'Mae Whitman', 'Jack De Sena', 'Dante Basco'],
+            'Gravity Falls': ['Jason Ritter', 'Kristen Schaal', 'Alex Hirsch'],
+            Bluey: ['Melanie Zanetti', 'David McCormack'],
+            'Toy Story': ['Tom Hanks', 'Tim Allen', 'Annie Potts', 'Don Rickles'],
+            'O Rei Leão': ['Matthew Broderick', 'Jonathan Taylor Thomas', 'James Earl Jones', 'Jeremy Irons']
+        };
+
+        const performerProfiles = {
+            'Rosalind Russell': {
+                bio: 'Atriz norte-americana de cinema e teatro, conhecida por comédias rápidas e personagens marcantes na Broadway e em Hollywood.',
+                works: ['Jejum de Amor (His Girl Friday)', 'A Mulher do Dia', 'Gypsy'],
+                awards: 'Recebeu quatro indicações ao Oscar de melhor atriz; não venceu a estatueta.'
+            },
+            'Cary Grant': {
+                bio: 'Ator britânico-americano, foi um dos grandes protagonistas de comédias românticas e suspenses clássicos de Hollywood.',
+                works: ['Jejum de Amor (His Girl Friday)', 'Intriga Internacional', 'Charada'],
+                awards: 'Recebeu um Oscar honorário em 1970, em reconhecimento à carreira.'
+            },
+            'Buster Keaton': {
+                bio: 'Ator, diretor e roteirista do cinema mudo, tornou-se referência mundial pela comédia física e pela precisão de suas cenas.',
+                works: ['A General (The General)', 'Sherlock Jr.', 'O Navegador'],
+                awards: 'Recebeu um Oscar honorário em 1960 por sua contribuição ao cinema.'
+            },
+            'Timothée Chalamet': {
+                bio: 'Ator norte-americano reconhecido por papéis dramáticos e protagonistas em produções de grande alcance.',
+                works: ['Me Chame pelo Seu Nome', 'Duna', 'Wonka'],
+                awards: 'Foi indicado ao Oscar de melhor ator por Me Chame pelo Seu Nome e Um Completo Desconhecido.'
+            },
+            Zendaya: {
+                bio: 'Atriz e produtora norte-americana que começou na televisão e também protagonizou filmes e séries de grande audiência.',
+                works: ['Euphoria', 'Duna', 'Homem-Aranha: De Volta ao Lar'],
+                awards: 'Venceu dois prêmios Emmy de melhor atriz em série dramática por Euphoria.'
+            },
+            'Javier Bardem': {
+                bio: 'Ator espanhol com carreira no cinema europeu e internacional, conhecido por personagens intensos em dramas e suspenses.',
+                works: ['Onde os Fracos Não Têm Vez', 'Biutiful', 'Duna'],
+                awards: 'Venceu o Oscar de melhor ator coadjuvante por Onde os Fracos Não Têm Vez.'
+            },
+            'Matthew McConaughey': {
+                bio: 'Ator norte-americano que alterna comédias, dramas e produções de aventura para cinema e televisão.',
+                works: ['Clube de Compras Dallas', 'Interestelar', 'True Detective'],
+                awards: 'Venceu o Oscar e o Globo de Ouro de melhor ator em filme dramático por Clube de Compras Dallas.'
+            },
+            'Anne Hathaway': {
+                bio: 'Atriz norte-americana de cinema e teatro, com trabalhos em comédia, drama, musicais e filmes de aventura.',
+                works: ['Os Miseráveis', 'O Diabo Veste Prada', 'Interestelar'],
+                awards: 'Venceu o Oscar e o Globo de Ouro de melhor atriz coadjuvante por Os Miseráveis.'
+            },
+            'Jessica Chastain': {
+                bio: 'Atriz e produtora norte-americana conhecida por protagonizar dramas, biografias e suspenses.',
+                works: ['A Hora Mais Escura', 'Interestelar', 'Os Olhos de Tammy Faye'],
+                awards: 'Venceu o Oscar de melhor atriz por Os Olhos de Tammy Faye.'
+            },
+            'Michael Caine': {
+                bio: 'Ator britânico com uma carreira de décadas no cinema, em dramas, comédias e filmes de aventura.',
+                works: ['Hannah e Suas Irmãs', 'Regras da Vida', 'Batman Begins'],
+                awards: 'Venceu dois Oscars de melhor ator coadjuvante: por Hannah e Suas Irmãs e Regras da Vida.'
+            },
+            'Leonardo DiCaprio': {
+                bio: 'Ator e produtor norte-americano conhecido por papéis principais em dramas e filmes de grande público.',
+                works: ['Titanic', 'A Origem', 'O Regresso'],
+                awards: 'Venceu o Oscar de melhor ator por O Regresso, após outras indicações à premiação.'
+            },
+            'Bryan Cranston': {
+                bio: 'Ator norte-americano de cinema e televisão, também trabalha como diretor e produtor.',
+                works: ['Breaking Bad', 'Malcolm in the Middle', 'Trumbo'],
+                awards: 'Venceu quatro prêmios Emmy de melhor ator em série dramática por Breaking Bad.'
+            },
+            'Aaron Paul': {
+                bio: 'Ator norte-americano conhecido por trabalhos na televisão, no cinema e em produções de voz.',
+                works: ['Breaking Bad', 'El Camino: A Breaking Bad Movie', 'Westworld'],
+                awards: 'Venceu três prêmios Emmy de melhor ator coadjuvante em série dramática por Breaking Bad.'
+            },
+            'Tom Hanks': {
+                bio: 'Ator e produtor norte-americano que estrelou comédias, dramas e filmes históricos ao longo de várias décadas.',
+                works: ['Forrest Gump', 'Náufrago', 'Toy Story'],
+                awards: 'Venceu dois Oscars de melhor ator: por Filadélfia e Forrest Gump.'
+            },
+            'Sigourney Weaver': {
+                bio: 'Atriz norte-americana reconhecida por papéis em ficção científica, drama e comédia.',
+                works: ['Alien, o Oitavo Passageiro', 'Os Caça-Fantasmas', 'Avatar'],
+                awards: 'Recebeu três indicações ao Oscar e venceu dois Globos de Ouro, incluindo um por Gorilas na Névoa.'
+            },
+            'James Earl Jones': {
+                bio: 'Ator norte-americano de teatro, cinema e televisão, conhecido também por sua voz marcante em personagens animados.',
+                works: ['O Rei Leão', 'Campo dos Sonhos', 'Star Wars'],
+                awards: 'Recebeu um Oscar honorário em 2011 e conquistou prêmios Emmy, Grammy e Tony ao longo da carreira.'
+            }
+        };
+
+        function renderActorProfile(name) {
+            const profile = performerProfiles[name];
+            const castTitles = Object.entries(titleCast)
+                .filter(([, cast]) => cast.includes(name))
+                .map(([title]) => title);
+            const directedTitles = [...movieCards]
+                .filter((card) => (card.dataset.directors || '').split(',').map((director) => director.trim()).includes(name))
+                .map((card) => card.dataset.title);
+            if (selectedCard?.dataset.cinema === 'true'
+                && (selectedCard.dataset.directors || '').split(',').map((director) => director.trim()).includes(name)) {
+                directedTitles.push(selectedCard.dataset.title);
+            }
+            const catalogTitles = [...new Set([...castTitles, ...directedTitles])];
+            actorProfileName.textContent = name;
+            actorProfileBio.textContent = profile
+                ? profile.bio
+                : `Artista associado a ${selectedCard.dataset.title}. O catálogo ainda não tem uma biografia completa para esta pessoa.`;
+
+            const works = profile?.works || catalogTitles;
+            actorProfileWorks.replaceChildren();
+            if (works.length) {
+                works.forEach((work) => {
+                    const item = document.createElement('li');
+                    item.textContent = work;
+                    actorProfileWorks.append(item);
+                });
+            } else {
+                const item = document.createElement('li');
+                item.textContent = 'Filmografia ainda não cadastrada.';
+                actorProfileWorks.append(item);
+            }
+
+            actorProfileAwards.textContent = profile
+                ? profile.awards
+                : 'Informações de prêmios e indicações ainda não cadastradas; isso não significa que o artista não tenha recebido prêmios.';
+
+            actorCatalogWorks.replaceChildren();
+            const catalogCards = new Map();
+            [...movieCards].forEach((movieCard) => {
+                if (catalogTitles.includes(movieCard.dataset.title) && !catalogCards.has(movieCard.dataset.title)) {
+                    catalogCards.set(movieCard.dataset.title, movieCard);
+                }
+            });
+            catalogCards.forEach((movieCard) => {
+                const item = document.createElement('button');
+                const poster = document.createElement('img');
+                const title = document.createElement('span');
+                const meta = document.createElement('span');
+
+                item.type = 'button';
+                item.className = 'actor-film-card';
+                item.setAttribute('aria-label', `Abrir ${movieCard.dataset.title}`);
+                poster.src = movieCard.dataset.poster;
+                poster.alt = '';
+                poster.loading = 'lazy';
+                poster.decoding = 'async';
+                title.className = 'actor-film-title';
+                title.textContent = movieCard.dataset.title;
+                meta.className = 'actor-film-meta';
+                meta.textContent = `${movieCard.dataset.year} · ${movieCard.dataset.type === 'serie' ? 'Série' : 'Filme'}`;
+                item.append(poster, title, meta);
+                item.addEventListener('click', () => openMedia(movieCard));
+                actorCatalogWorks.append(item);
+            });
+            actorCatalogWorks.closest('.actor-profile-section').hidden = catalogCards.size === 0;
+
+            mediaDetailsView.hidden = true;
+            actorProfileView.hidden = false;
+            modalContent.setAttribute('aria-labelledby', 'actorProfileName');
+            modalContent.scrollTop = 0;
+        }
+
+        function showMediaDetails() {
+            actorProfileView.hidden = true;
+            mediaDetailsView.hidden = false;
+            modalContent.setAttribute('aria-labelledby', 'modalTitle');
+            modalContent.scrollTop = 0;
+        }
+
+        function normalizeSearchText(value) {
+            return value
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase();
+        }
+
+        function getSafeCinemaUrl(value, hostname) {
+            try {
+                const url = new URL(value);
+                return url.protocol === 'https:' && url.hostname === hostname ? url.href : '';
+            } catch {
+                return '';
+            }
+        }
+
+        function getNetflixSearchUrl(title) {
+            const url = new URL('https://www.netflix.com/search');
+            url.searchParams.set('q', title);
+            return url.href;
+        }
+
+        function getCinemaTicketUrl(movie) {
+            const ticketUrl = new URL(movie.ticketUrl);
+            const city = getSelectedCinemaCity();
+            if (city && normalizeSearchText(movie.city || '') === normalizeSearchText(city.name)) {
+                ticketUrl.searchParams.set('city', city.urlKey);
+            }
+            return ticketUrl.href;
+        }
+
+        function normalizeCinemaFeed(items, feedName) {
+            if (!Array.isArray(items)) {
+                throw new TypeError(`A lista de ${feedName} dos cinemas tem um formato inválido.`);
+            }
+
+            const validItems = [];
+            let skippedItems = 0;
+            items.forEach((item) => {
+                if (!item || typeof item !== 'object') {
+                    skippedItems += 1;
+                    return;
+                }
+                const ticketUrl = getSafeCinemaUrl(item.siteURL, 'www.ingresso.com');
+                if (typeof item.title !== 'string' || !item.title.trim() || !ticketUrl) {
+                    skippedItems += 1;
+                    return;
+                }
+
+                const poster = Array.isArray(item.images)
+                    ? item.images.find((image) => image.type === 'PosterPortrait')?.url
+                    : '';
+                const posterUrl = getSafeCinemaUrl(poster, 'ingresso-a.akamaihd.net')
+                    || getSafeCinemaUrl(item.imageFeatured, 'ingresso-a.akamaihd.net');
+                validItems.push({ ...item, ticketUrl, posterUrl });
+            });
+
+            if (skippedItems > 0) {
+                console.warn(`${skippedItems} item(ns) inválido(s) foram ignorados na lista ${feedName} dos cinemas.`);
+            }
+
+            return validItems;
+        }
+
+        function getDaysUntilPremiere(movie) {
+            const date = movie.premiereDate?.localDate;
+            if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}/.test(date)) {
+                return null;
+            }
+
+            const premiereDay = Date.parse(`${date.slice(0, 10)}T00:00:00Z`);
+            const now = new Date();
+            const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+            return Number.isFinite(premiereDay)
+                ? Math.round((premiereDay - today) / 86400000)
+                : null;
+        }
+
+        function getSelectedCinemaCity() {
+            return cinemaCities.find((city) => city.id === cinemaCitySelect.value) || null;
+        }
+
+        async function loadCinemaCities() {
+            cinemaCityState = 'loading';
+            cinemaCityStatus.textContent = 'Carregando cidades disponíveis...';
+            cinemaCitySelect.disabled = true;
+
+            try {
+                const response = await fetch('https://api-content.ingresso.com/v0/states?partnership=home', {
+                    headers: { Accept: 'application/json' }
+                });
+                if (!response.ok) {
+                    throw new Error(`A Ingresso.com respondeu com o status ${response.status}.`);
+                }
+
+                const states = await response.json();
+                if (!Array.isArray(states)) {
+                    throw new TypeError('A lista de cidades da Ingresso.com tem um formato inválido.');
+                }
+
+                cinemaCities = states.flatMap((state) =>
+                    state && Array.isArray(state.cities) ? state.cities : []
+                ).filter((city) =>
+                    city && typeof city.id === 'string'
+                    && typeof city.name === 'string'
+                    && typeof city.urlKey === 'string'
+                ).sort((first, second) =>
+                    first.name.localeCompare(second.name, 'pt-BR')
+                );
+
+                if (cinemaCities.length === 0) {
+                    throw new Error('A lista de cidades da Ingresso.com não contém opções válidas.');
+                }
+
+                cinemaCitySelect.replaceChildren(...cinemaCities.map((city) =>
+                    new Option(`${city.name} · ${city.uf}`, city.id)
+                ));
+
+                let preferredCityId = '2';
+                try {
+                    const savedCityId = localStorage.getItem('cinecia-cinema-city');
+                    if (savedCityId && cinemaCities.some((city) => city.id === savedCityId)) {
+                        preferredCityId = savedCityId;
+                    }
+                } catch (error) {
+                    console.error('Não foi possível recuperar a cidade salva para os cinemas.', error);
+                }
+
+                cinemaCitySelect.value = cinemaCities.some((city) => city.id === preferredCityId)
+                    ? preferredCityId
+                    : cinemaCities[0].id;
+                cinemaCityState = 'ready';
+                cinemaCitySelect.disabled = false;
+                cinemaCityStatus.textContent = '';
+                loadCinemaCatalogs();
+            } catch (error) {
+                cinemaCityState = 'error';
+                cinemaCitySelect.replaceChildren(new Option('Cidades indisponíveis', ''));
+                cinemaCityStatus.textContent = 'Não foi possível carregar a lista de cidades. Tente novamente.';
+                cinemaRetry.hidden = false;
+                console.error('Não foi possível carregar as cidades da Ingresso.com.', error);
+            }
+        }
+
+        function formatCinemaDate(movie) {
+            const date = movie.premiereDate?.localDate;
+            if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}/.test(date)) {
+                return '';
+            }
+
+            const timestamp = Date.parse(`${date.slice(0, 10)}T00:00:00Z`);
+            return Number.isFinite(timestamp)
+                ? new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', timeZone: 'UTC' }).format(timestamp)
+                : '';
+        }
+
+        function getRecentCinemaReleases() {
+            const releases = new Map();
+            [...cinemaNowPlaying, ...cinemaComingSoon].forEach((movie) => {
+                const daysUntilPremiere = getDaysUntilPremiere(movie);
+                if (daysUntilPremiere === null || daysUntilPremiere < -90 || daysUntilPremiere > 60) {
+                    return;
+                }
+
+                const key = normalizeSearchText(movie.title);
+                if (!releases.has(key)) {
+                    releases.set(key, { movie, daysUntilPremiere });
+                }
+            });
+
+            return [...releases.values()].sort((first, second) =>
+                Math.abs(first.daysUntilPremiere) - Math.abs(second.daysUntilPremiere)
+            );
+        }
+
+        function createCinemaCard(movie, isUpcoming = false) {
+            const card = document.createElement('article');
+            const info = document.createElement('div');
+            const actions = document.createElement('div');
+            const badge = document.createElement('span');
+            const year = document.createElement('span');
+            const title = document.createElement('h3');
+            const sessionsLink = document.createElement('a');
+            const streamingLink = document.createElement('a');
+            const poster = movie.posterUrl ? document.createElement('img') : document.createElement('div');
+            const daysUntilPremiere = getDaysUntilPremiere(movie);
+            const releaseDate = formatCinemaDate(movie);
+            const genre = Array.isArray(movie.genres) ? movie.genres.slice(0, 2).join(' · ') : '';
+            const legalVideo = [...movieCards].find((siteCard) =>
+                normalizeSearchText(siteCard.dataset.title || '') === normalizeSearchText(movie.title)
+                && siteCard.dataset.video
+                && siteCard.dataset.license
+            );
+            const directors = movie.directors || movie.director || '';
+            const minutes = Number(movie.duration);
+
+            card.className = 'movie-card cinema-movie-card';
+            card.setAttribute('aria-label', `${movie.title}, ${isUpcoming ? 'lançamento no cinema' : 'em cartaz'}. Consultar na Ingresso.com`);
+            card.tabIndex = 0;
+            card.dataset.cinema = 'true';
+            card.dataset.title = movie.title;
+            card.dataset.type = 'filme';
+            card.dataset.year = movie.releaseYear || '';
+            card.dataset.runtime = Number.isFinite(minutes) && minutes > 0
+                ? `${Math.floor(minutes / 60)}h ${String(minutes % 60).padStart(2, '0')}min`
+                : 'Duração não informada';
+            card.dataset.genre = Array.isArray(movie.genres) ? movie.genres.join(', ') : '';
+            card.dataset.description = movie.synopsis || `Consulte as sessões de ${movie.title} nos cinemas de ${cinemaCity || 'sua região'}.`;
+            card.dataset.poster = movie.posterUrl || '';
+            card.dataset.directors = typeof directors === 'string' ? directors : '';
+            card.dataset.cast = typeof movie.cast === 'string' ? movie.cast : '';
+            card.dataset.ticketUrl = getCinemaTicketUrl(movie);
+            const streamingUrl = new URL('https://www.justwatch.com/br/busca');
+            streamingUrl.searchParams.set('q', movie.title);
+            card.dataset.streamingUrl = streamingUrl.href;
+            card.dataset.netflixUrl = getNetflixSearchUrl(movie.title);
+            if (legalVideo) {
+                card.dataset.video = legalVideo.dataset.video;
+                card.dataset.license = legalVideo.dataset.license;
+                if (legalVideo.dataset.episodeTemplate) {
+                    card.dataset.episodeTemplate = legalVideo.dataset.episodeTemplate;
+                    card.dataset.episodeCount = legalVideo.dataset.episodeCount || '';
+                }
+            }
+            if (movie.posterUrl) {
+                poster.src = movie.posterUrl;
+                poster.alt = `Pôster de ${movie.title}`;
+                poster.loading = 'lazy';
+                poster.decoding = 'async';
+            } else {
+                poster.className = 'cinema-poster-placeholder';
+                poster.textContent = 'Pôster indisponível';
+                poster.setAttribute('aria-hidden', 'true');
+            }
+
+            info.className = 'card-info';
+            badge.className = 'movie-badge';
+            if (isUpcoming && daysUntilPremiere > 0) {
+                badge.textContent = `Estreia ${releaseDate}`;
+            } else if (isUpcoming && daysUntilPremiere === 0) {
+                badge.textContent = 'Estreia hoje';
+            } else if (isUpcoming && releaseDate) {
+                badge.textContent = `Lançado ${releaseDate}`;
+            } else {
+                badge.textContent = 'Em cartaz';
+            }
+            year.className = 'card-year';
+            year.textContent = [movie.releaseYear, genre].filter(Boolean).join(' · ') || 'Filme';
+            title.textContent = movie.title;
+            actions.className = 'cinema-card-actions';
+            sessionsLink.className = 'cinema-card-link';
+            sessionsLink.href = card.dataset.ticketUrl;
+            sessionsLink.target = '_blank';
+            sessionsLink.rel = 'noopener noreferrer';
+            sessionsLink.textContent = 'Ver sessões';
+            sessionsLink.setAttribute('aria-label', `Consultar sessões de ${movie.title} na Ingresso.com`);
+            streamingLink.className = 'cinema-card-link cinema-streaming-link';
+            streamingLink.href = card.dataset.streamingUrl;
+            streamingLink.target = '_blank';
+            streamingLink.rel = 'noopener noreferrer';
+            streamingLink.textContent = 'Onde assistir';
+            streamingLink.setAttribute('aria-label', `Consultar opções oficiais de streaming e aluguel para ${movie.title}`);
+            const netflixLink = document.createElement('a');
+            netflixLink.className = 'cinema-card-link netflix-card-link';
+            netflixLink.href = card.dataset.netflixUrl;
+            netflixLink.target = '_blank';
+            netflixLink.rel = 'noopener noreferrer';
+            netflixLink.textContent = 'Netflix';
+            netflixLink.setAttribute('aria-label', `Buscar ${movie.title} na Netflix; a disponibilidade pode variar`);
+            actions.append(sessionsLink, streamingLink, netflixLink);
+            info.append(badge, year, title, actions);
+            card.append(poster);
+            card.append(info);
+            card.addEventListener('click', (event) => {
+                if (!event.target.closest('a')) {
+                    openMedia(card);
+                }
+            });
+            card.addEventListener('keydown', (event) => {
+                if ((event.key === 'Enter' || event.key === ' ') && !event.target.closest('a')) {
+                    event.preventDefault();
+                    openMedia(card);
+                }
+            });
+            return card;
+        }
+
+        function updateCinemaListings() {
+            const currentCity = cinemaCity || 'cidade informada pela Ingresso.com';
+            const currentCards = cinemaNowPlaying.map((movie) => createCinemaCard(movie));
+            const releaseCards = getRecentCinemaReleases().map(({ movie, daysUntilPremiere }) =>
+                createCinemaCard(movie, daysUntilPremiere >= 0)
+            );
+            cinemaNowMovies.replaceChildren(...currentCards);
+            cinemaRecentMovies.replaceChildren(...releaseCards);
+
+            cinemaNowStatus.textContent = cinemaNowState === 'loading'
+                ? 'Carregando filmes em cartaz...'
+                : cinemaNowState === 'error'
+                    ? cinemaNowError || 'Não foi possível carregar a programação de cinema. Tente novamente.'
+                    : `${currentCards.length} ${currentCards.length === 1 ? 'filme em cartaz' : 'filmes em cartaz'} · Programação de ${currentCity}.`;
+            cinemaRecentStatus.textContent = cinemaComingSoonState === 'loading' && !cinemaComingSoon.length
+                ? 'Carregando lançamentos...'
+                : cinemaComingSoonState === 'error'
+                    ? cinemaComingSoonError || 'Não foi possível carregar todos os lançamentos. Tente novamente.'
+                    : `${releaseCards.length} ${releaseCards.length === 1 ? 'lançamento' : 'lançamentos'} · Estreias dos últimos 90 dias e dos próximos 60 dias.`;
+            cinemaRetry.hidden = cinemaNowState !== 'error' && cinemaComingSoonState !== 'error';
+        }
+
+        async function loadCinemaFeed(feedName, city, generation) {
+            const isNowPlaying = feedName === 'nowplaying';
+            if (isNowPlaying) {
+                cinemaNowState = 'loading';
+                cinemaNowError = '';
+            } else {
+                cinemaComingSoonState = 'loading';
+                cinemaComingSoonError = '';
+            }
+            updateCinemaListings();
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 15000);
+
+            try {
+                const url = new URL(`https://api-content.ingresso.com/v0/templates/${feedName}`);
+                url.searchParams.set('partnership', 'home');
+                url.searchParams.set('cityId', city.id);
+                url.searchParams.set('city', city.urlKey);
+                const response = await fetch(url, {
+                    signal: controller.signal,
+                    headers: { Accept: 'application/json' }
+                });
+                if (!response.ok) {
+                    throw new Error(`A Ingresso.com respondeu com o status ${response.status}.`);
+                }
+
+                const items = normalizeCinemaFeed(await response.json(), feedName);
+                if (generation !== cinemaLoadGeneration) {
+                    return;
+                }
+                const matchingCityItems = items.filter((item) =>
+                    normalizeSearchText(item.city || '') === normalizeSearchText(city.name)
+                );
+                if (matchingCityItems.length === 0) {
+                    throw new Error(`A Ingresso.com não retornou programação para ${city.name}.`);
+                }
+
+                if (isNowPlaying) {
+                    cinemaNowPlaying = matchingCityItems;
+                    cinemaNowState = 'ready';
+                } else {
+                    cinemaComingSoon = matchingCityItems;
+                    cinemaComingSoonState = 'ready';
+                }
+                cinemaCity = city.name;
+            } catch (error) {
+                if (generation !== cinemaLoadGeneration) {
+                    return;
+                }
+                if (isNowPlaying) {
+                    cinemaNowState = 'error';
+                    cinemaNowError = error.message;
+                    cinemaNowPlaying = [];
+                } else {
+                    cinemaComingSoonState = 'error';
+                    cinemaComingSoonError = error.message;
+                    cinemaComingSoon = [];
+                }
+                console.error(`Não foi possível carregar a lista ${feedName} da Ingresso.com.`, error);
+            } finally {
+                clearTimeout(timeout);
+            }
+
+            if (generation !== cinemaLoadGeneration) {
+                return;
+            }
+            updateCinemaListings();
+            if (searchInput.value.trim()) {
+                filterMovies();
+            } else if (activeCategory === 'minha-lista') {
+                updateCategoryView();
+            }
+        }
+
+        function loadCinemaCatalogs() {
+            const city = getSelectedCinemaCity();
+            if (!city) {
+                return;
+            }
+
+            cinemaLoadGeneration += 1;
+            const generation = cinemaLoadGeneration;
+            cinemaCity = city.name;
+            cinemaNowPlaying = [];
+            cinemaComingSoon = [];
+            Promise.all([
+                loadCinemaFeed('nowplaying', city, generation),
+                loadCinemaFeed('soon', city, generation)
+            ]);
+        }
+
+        function getSearchMatches(query) {
+            const normalizedQuery = normalizeSearchText(query);
+            const matchingCards = [...movieCards]
+                .filter((card) => {
+                    const title = normalizeSearchText(card.dataset.title || '');
+                    const genre = normalizeSearchText(card.dataset.genre || '');
+                    return `${title} ${genre}`.includes(normalizedQuery);
+                })
+                .sort((first, second) => {
+                    const firstStartsWith = normalizeSearchText(first.dataset.title || '').startsWith(normalizedQuery);
+                    const secondStartsWith = normalizeSearchText(second.dataset.title || '').startsWith(normalizedQuery);
+                    return Number(secondStartsWith) - Number(firstStartsWith);
+                });
+            const seenTitles = new Set();
+            return matchingCards.filter((card) => {
+                const title = normalizeSearchText(card.dataset.title || '');
+                if (seenTitles.has(title)) {
+                    return false;
+                }
+
+                seenTitles.add(title);
+                return true;
+            });
+        }
+
+        function getCinemaSearchMatches(query) {
+            const normalizedQuery = normalizeSearchText(query);
+            const siteTitles = new Set([...movieCards].map((card) => normalizeSearchText(card.dataset.title || '')));
+            const seenTitles = new Set(siteTitles);
+            const cinemaTitles = [
+                ...cinemaNowPlaying.map((movie) => ({ movie, isUpcoming: false })),
+                ...cinemaComingSoon.map((movie) => ({
+                    movie,
+                    isUpcoming: getDaysUntilPremiere(movie) === null || getDaysUntilPremiere(movie) >= 0
+                }))
+            ]
+                .filter(({ movie }) => {
+                    const title = normalizeSearchText(movie.title);
+                    const daysUntilPremiere = getDaysUntilPremiere(movie);
+                    const searchableText = normalizeSearchText([
+                        movie.title,
+                        ...(Array.isArray(movie.genres) ? movie.genres : []),
+                        movie.synopsis
+                    ].join(' '));
+                    return !siteTitles.has(title)
+                        && (cinemaNowPlaying.includes(movie)
+                            || daysUntilPremiere === null
+                            || (daysUntilPremiere >= -90 && daysUntilPremiere <= 180))
+                        && searchableText.includes(normalizedQuery);
+                })
+                .filter(({ movie }) => {
+                    const title = normalizeSearchText(movie.title);
+                    if (seenTitles.has(title)) {
+                        return false;
+                    }
+                    seenTitles.add(title);
+                    return true;
+                });
+
+            return cinemaTitles.slice(0, 6);
+        }
+
+        function matchesCategory(card) {
+            switch (activeCategory) {
+                case 'filmes':
+                    return card.dataset.type === 'filme';
+                case 'gratis':
+                    return Boolean(card.dataset.video);
+                case 'series':
+                    return card.dataset.type === 'serie';
+                case 'animes':
+                    return card.dataset.anime === 'true';
+                case 'desenhos':
+                    return card.dataset.anime !== 'true'
+                        && normalizeSearchText(card.dataset.genre || '').includes('animacao');
+                case 'novidades':
+                    return Boolean(card.closest('#novidades'));
+                case 'minha-lista':
+                    return savedTitles.has(card.dataset.title);
+                case 'cinema':
+                case 'lancamentos':
+                    return false;
+                default:
+                    return true;
+            }
+        }
+
+        function updateHeroMosaic(cards) {
+            const isHome = activeCategory === 'home';
+            const homeFeaturedCard = isHome
+                ? [...movieCards].find((card) => card.dataset.video && card.dataset.license)
+                : null;
+            featuredCategoryCard = isHome ? homeFeaturedCard : cards[0] || null;
+            hero.classList.toggle('category-hero', Boolean(featuredCategoryCard));
+            hero.classList.toggle('home-featured', isHome && Boolean(featuredCategoryCard));
+            hero.classList.toggle('hero-empty', !isHome && !featuredCategoryCard);
+            heroCategoryKicker.hidden = !featuredCategoryCard;
+            heroCategoryMeta.hidden = !featuredCategoryCard;
+            heroActions.hidden = !isHome && !featuredCategoryCard;
+            featuredDetailsLabel.hidden = !featuredCategoryCard || !featuredCategoryCard.dataset.video;
+            featuredMoreDetails.hidden = isHome || !featuredCategoryCard;
+            surpriseMeButton.hidden = !isHome && !featuredCategoryCard;
+
+            if (isHome) {
+                if (homeFeaturedCard) {
+                    heroMosaic.replaceChildren(...homeMosaicPosters.map((poster, index) => {
+                        const image = document.createElement('img');
+                        image.src = poster;
+                        image.alt = '';
+                        image.setAttribute('aria-hidden', 'true');
+                        image.loading = index < 8 ? 'eager' : 'lazy';
+                        image.decoding = 'async';
+                        return image;
+                    }));
+                    heroCategoryKicker.textContent = 'Destaque grátis · Filme de domínio público';
+                    heroTitle.textContent = homeFeaturedCard.dataset.title;
+                    heroDescription.textContent = homeFeaturedCard.dataset.description;
+                    heroCategoryYear.textContent = homeFeaturedCard.dataset.year || '';
+                    heroCategoryType.textContent = homeFeaturedCard.dataset.type === 'serie' ? 'Série' : 'Filme';
+                    heroCategoryGenre.textContent = homeFeaturedCard.dataset.genre || '';
+                    featuredDetailsLabel.textContent = '▶ Assistir grátis';
+                } else {
+                    heroTitle.textContent = categoryCopy.home.title;
+                    heroDescription.textContent = categoryCopy.home.description;
+                    heroCategoryKicker.hidden = true;
+                    heroCategoryMeta.hidden = true;
+                }
+                return;
+            }
+
+            if (!featuredCategoryCard) {
+                heroMosaic.replaceChildren();
+                const copy = categoryCopy[activeCategory] || categoryCopy.home;
+                heroCategoryKicker.textContent = copy.title.replace(/\.$/, '');
+                heroTitle.textContent = copy.title;
+                heroDescription.textContent = copy.description;
+                return;
+            }
+
+            const backdrop = featuredCategoryCard.dataset.backdrop || featuredCategoryCard.dataset.poster;
+            const image = document.createElement('img');
+            image.src = backdrop;
+            image.alt = '';
+            image.setAttribute('aria-hidden', 'true');
+            image.fetchPriority = 'high';
+            heroMosaic.replaceChildren(image);
+            heroCategoryKicker.textContent = `${categoryCopy[activeCategory]?.title.replace(/\.$/, '') || 'Destaque'} · Em destaque`;
+            heroTitle.textContent = featuredCategoryCard.dataset.title;
+            heroDescription.textContent = featuredCategoryCard.dataset.description;
+            heroCategoryYear.textContent = featuredCategoryCard.dataset.year || '';
+            heroCategoryType.textContent = featuredCategoryCard.dataset.type === 'serie' ? 'Série' : 'Filme';
+            heroCategoryGenre.textContent = featuredCategoryCard.dataset.genre || '';
+            featuredDetailsLabel.textContent = '▶ Assistir grátis';
+        }
+
+        function getUniqueCategoryCards() {
+            const seenTitles = new Set();
+            const categorySourceCards = [...movieCards];
+            if (activeCategory === 'minha-lista') {
+                [...cinemaNowPlaying, ...cinemaComingSoon].forEach((movie) => {
+                    if (savedTitles.has(movie.title)) {
+                        categorySourceCards.push(createCinemaCard(movie));
+                    }
+                });
+            }
+
+            return categorySourceCards.filter((card) => {
+                if (!matchesCategory(card)) {
+                    return false;
+                }
+
+                const title = normalizeSearchText(card.dataset.title || '');
+                if (seenTitles.has(title)) {
+                    return false;
+                }
+
+                seenTitles.add(title);
+                return true;
+            });
+        }
+
+        function updateGenreOptions(cards) {
+            if (genreOptionsCategory === activeCategory) {
+                return;
+            }
+
+            genreOptionsCategory = activeCategory;
+            const currentGenre = catalogGenre.value;
+            const genres = [...new Set(cards.flatMap((card) =>
+                (card.dataset.genre || '').split(',').map((genre) => genre.trim()).filter(Boolean)
+            ))].sort((first, second) => first.localeCompare(second, 'pt-BR'));
+
+            catalogGenre.replaceChildren(new Option('Todos os gêneros', 'all'));
+            genres.forEach((genre) => catalogGenre.add(new Option(genre, genre)));
+            catalogGenre.value = genres.includes(currentGenre) ? currentGenre : 'all';
+        }
+
+        function updateQuickGenreFilters(cards) {
+            const genreCounts = new Map();
+            cards.forEach((card) => {
+                (card.dataset.genre || '').split(',').forEach((genre) => {
+                    const trimmedGenre = genre.trim();
+                    if (trimmedGenre) {
+                        genreCounts.set(trimmedGenre, (genreCounts.get(trimmedGenre) || 0) + 1);
+                    }
+                });
+            });
+
+            const popularGenres = [...genreCounts.entries()]
+                .sort((first, second) => second[1] - first[1] || first[0].localeCompare(second[0], 'pt-BR'))
+                .slice(0, 5)
+                .map(([genre]) => genre);
+            const selectedGenre = catalogGenre.value;
+            if (selectedGenre !== 'all' && !popularGenres.includes(selectedGenre)) {
+                popularGenres.push(selectedGenre);
+            }
+
+            const genreButtons = ['all', ...popularGenres].map((genre) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'quick-filter-chip quick-genre-chip';
+                button.dataset.quickGenre = genre;
+                button.setAttribute('aria-pressed', String(selectedGenre === genre));
+                button.textContent = genre === 'all' ? 'Todos os gêneros' : genre;
+                return button;
+            });
+            quickGenreFilters.replaceChildren(...genreButtons);
+            quickTypeFilters.forEach((button) => {
+                button.setAttribute('aria-pressed', String(catalogType.value === button.dataset.quickType));
+            });
+            quickFreeFilter.disabled = activeCategory !== 'gratis'
+                && !cards.some((card) => card.dataset.video && card.dataset.license);
+            quickFreeFilter.setAttribute(
+                'aria-pressed',
+                String(activeCategory === 'gratis' || onlyFreeTitles)
+            );
+        }
+
+        function getFilteredCategoryCards(cards) {
+            const query = normalizeSearchText(catalogSearch.value.trim());
+            const selectedGenre = normalizeSearchText(catalogGenre.value);
+            const selectedType = catalogType.value;
+            const filtered = cards.filter((card) => {
+                const searchableText = normalizeSearchText([
+                    card.dataset.title,
+                    card.dataset.genre,
+                    card.dataset.year,
+                    card.dataset.description
+                ].join(' '));
+                const cardGenres = (card.dataset.genre || '')
+                    .split(',')
+                    .map((genre) => normalizeSearchText(genre.trim()));
+                return (!query || searchableText.includes(query))
+                    && (selectedGenre === 'all' || cardGenres.includes(selectedGenre))
+                    && (selectedType === 'all' || card.dataset.type === selectedType)
+                    && (!onlyFreeTitles || Boolean(card.dataset.video && card.dataset.license));
+            });
+
+            switch (catalogSort.value) {
+                case 'title':
+                    filtered.sort((first, second) =>
+                        (first.dataset.title || '').localeCompare(second.dataset.title || '', 'pt-BR')
+                    );
+                    break;
+                case 'newest':
+                    filtered.sort((first, second) => Number(second.dataset.year) - Number(first.dataset.year));
+                    break;
+                case 'oldest':
+                    filtered.sort((first, second) => Number(first.dataset.year) - Number(second.dataset.year));
+                    break;
+            }
+
+            return filtered;
+        }
+
+        function createPosterActions(card) {
+            const cardInfo = card.querySelector('.card-info');
+            if (!cardInfo) {
+                return;
+            }
+
+            cardInfo.querySelector('.poster-actions')?.remove();
+            const actions = document.createElement('div');
+            const detailsButton = document.createElement('button');
+
+            actions.className = 'poster-actions';
+            detailsButton.type = 'button';
+            detailsButton.className = 'poster-action';
+            detailsButton.textContent = 'ⓘ Detalhes';
+            detailsButton.setAttribute('aria-label', `Ver detalhes de ${card.dataset.title}`);
+            detailsButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openMedia(card);
+            });
+            actions.append(detailsButton);
+
+            if (card.dataset.video && card.dataset.license) {
+                const playButton = document.createElement('button');
+                playButton.type = 'button';
+                playButton.className = 'poster-action poster-play-action';
+                playButton.textContent = '▶ Assistir grátis';
+                playButton.setAttribute('aria-label', `Assistir ${card.dataset.title} grátis com vídeo autorizado`);
+                playButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    openMedia(card);
+                    startPlayback();
+                });
+                actions.prepend(playButton);
+            }
+
+            cardInfo.append(actions);
+        }
+
+        function renderCategoryCards(container, cards) {
+            const clones = cards.map((card) => {
+                const clone = card.cloneNode(true);
+                clone.classList.remove('hidden-card');
+                createPosterActions(clone);
+                clone.addEventListener('click', (event) => {
+                    if (!event.target.closest('a')) {
+                        openMedia(clone);
+                    }
+                });
+                clone.addEventListener('keydown', (event) => {
+                    if ((event.key === 'Enter' || event.key === ' ') && !event.target.closest('a')) {
+                        event.preventDefault();
+                        openMedia(clone);
+                    }
+                });
+                return clone;
+            });
+            container.replaceChildren(...clones);
+        }
+
+        function renderSimilarTitles(card) {
+            const currentGenres = (card.dataset.genre || '').split(',').map((genre) => normalizeSearchText(genre.trim()));
+            const uniqueTitles = new Map();
+            [...movieCards].forEach((candidate) => {
+                if (candidate.dataset.title !== card.dataset.title && !uniqueTitles.has(candidate.dataset.title)) {
+                    uniqueTitles.set(candidate.dataset.title, candidate);
+                }
+            });
+
+            const recommendations = [...uniqueTitles.values()]
+                .map((candidate, index) => {
+                    const candidateGenres = (candidate.dataset.genre || '').split(',').map((genre) => normalizeSearchText(genre.trim()));
+                    const sharedGenres = candidateGenres.filter((genre) => currentGenres.includes(genre)).length;
+                    const sameType = candidate.dataset.type === card.dataset.type;
+                    return { candidate, index, sharedGenres, score: sharedGenres * 2 + (sameType ? 1 : 0) };
+                })
+                .filter(({ sharedGenres, score }) => card.dataset.cinema === 'true' ? sharedGenres > 0 : score > 0)
+                .sort((first, second) => second.score - first.score || first.index - second.index)
+                .slice(0, 5);
+
+            modalSimilar.replaceChildren();
+            recommendations.forEach(({ candidate }) => {
+                const button = document.createElement('button');
+                const image = document.createElement('img');
+                const title = document.createElement('span');
+                const meta = document.createElement('span');
+
+                button.type = 'button';
+                button.className = 'similar-card';
+                button.setAttribute('aria-label', `Ver detalhes de ${candidate.dataset.title}`);
+                image.src = candidate.dataset.poster;
+                image.alt = '';
+                image.loading = 'lazy';
+                image.decoding = 'async';
+                title.className = 'similar-card-title';
+                title.textContent = candidate.dataset.title;
+                meta.className = 'similar-card-meta';
+                meta.textContent = `${candidate.dataset.year} · ${candidate.dataset.type === 'serie' ? 'Série' : 'Filme'}`;
+                button.append(image, title, meta);
+                button.addEventListener('click', () => openMedia(candidate));
+                modalSimilar.append(button);
+            });
+
+            if (card.dataset.cinema === 'true') {
+                const currentTitle = normalizeSearchText(card.dataset.title || '');
+                const seenCinemaTitles = new Set([currentTitle]);
+                const cinemaRecommendations = [...cinemaNowPlaying, ...cinemaComingSoon]
+                    .filter((candidate) => {
+                        const candidateTitle = normalizeSearchText(candidate.title);
+                        if (seenCinemaTitles.has(candidateTitle)) {
+                            return false;
+                        }
+                        seenCinemaTitles.add(candidateTitle);
+                        const candidateGenres = Array.isArray(candidate.genres) ? candidate.genres : [];
+                        return candidateGenres.some((genre) =>
+                            currentGenres.includes(normalizeSearchText(genre))
+                        );
+                    })
+                    .slice(0, Math.max(0, 5 - recommendations.length));
+
+                cinemaRecommendations.forEach((candidate) => {
+                    const button = document.createElement('button');
+                    const image = candidate.posterUrl ? document.createElement('img') : document.createElement('span');
+                    const title = document.createElement('span');
+                    const meta = document.createElement('span');
+
+                    button.type = 'button';
+                    button.className = 'similar-card';
+                    button.setAttribute('aria-label', `Ver detalhes de ${candidate.title}`);
+                    if (candidate.posterUrl) {
+                        image.src = candidate.posterUrl;
+                        image.alt = '';
+                        image.loading = 'lazy';
+                        image.decoding = 'async';
+                    } else {
+                        image.className = 'similar-card-placeholder';
+                        image.textContent = 'Pôster indisponível';
+                        image.setAttribute('aria-hidden', 'true');
+                    }
+                    title.className = 'similar-card-title';
+                    title.textContent = candidate.title;
+                    meta.className = 'similar-card-meta';
+                    meta.textContent = `${candidate.releaseYear || ''} · Cinema`;
+                    button.append(image, title, meta);
+                    button.addEventListener('click', () => openMedia(createCinemaCard(candidate)));
+                    modalSimilar.append(button);
+                });
+            }
+        }
+
+        function updateCategoryView() {
+            const isHome = activeCategory === 'home';
+            document.body.classList.toggle('home-view', isHome);
+            categoryTabs.forEach((tab) => {
+                tab.setAttribute('aria-pressed', String(tab.dataset.category === activeCategory));
+            });
+            navMoreToggle.setAttribute(
+                'data-active',
+                String(['animes', 'desenhos', 'novidades', 'cinema', 'lancamentos'].includes(activeCategory))
+            );
+
+            const isCinemaCategory = activeCategory === 'cinema';
+            const isReleaseCategory = activeCategory === 'lancamentos';
+            const isCinemaCatalog = isCinemaCategory || isReleaseCategory;
+            const copy = categoryCopy[activeCategory] || categoryCopy.home;
+            const categoryCards = getUniqueCategoryCards();
+            updateGenreOptions(categoryCards);
+            updateQuickGenreFilters(categoryCards);
+            const matchingCards = isHome ? [] : getFilteredCategoryCards(categoryCards);
+            const featuredTitle = categoryFeaturedTitles[activeCategory];
+            if (catalogSort.value === 'recommended' && !catalogSearch.value.trim() && featuredTitle) {
+                matchingCards.sort((first, second) =>
+                    Number(second.dataset.title === featuredTitle) - Number(first.dataset.title === featuredTitle)
+                );
+            }
+            const matchingMovies = matchingCards.filter((card) => card.dataset.type === 'filme');
+            const matchingSeries = matchingCards.filter((card) => card.dataset.type === 'serie');
+            const homeQuery = normalizeSearchText(searchInput.value.trim());
+            const homeMatches = [...movieCards].filter((card) => {
+                const cardText = normalizeSearchText([
+                    card.dataset.title,
+                    card.dataset.genre,
+                    card.dataset.year,
+                    card.dataset.description
+                ].join(' '));
+                return !homeQuery || cardText.includes(homeQuery);
+            });
+
+            featureBanner.hidden = !isHome;
+            categoryCatalog.hidden = isHome;
+            catalogToolbar.hidden = isCinemaCatalog;
+            catalogQuickFilters.hidden = isCinemaCatalog;
+            cinemaCatalogs.hidden = !isCinemaCatalog;
+            cinemaNowSection.hidden = !isCinemaCategory;
+            cinemaRecentSection.hidden = !isReleaseCategory;
+            categoryEmptyState.hidden = isHome || isCinemaCatalog || matchingCards.length > 0;
+
+            movieCards.forEach((card) => {
+                card.classList.toggle('hidden-card', !isHome || !homeMatches.includes(card));
+            });
+            categoryRows.forEach((row) => {
+                row.hidden = !isHome || !row.querySelector('.movie-card:not(.hidden-card)');
+            });
+
+            if (!isHome) {
+                renderCategoryCards(categoryMovies, matchingMovies);
+                renderCategoryCards(categorySeries, matchingSeries);
+                categoryCatalog.classList.toggle('list-view', catalogViewButtons[1].getAttribute('aria-pressed') === 'true');
+                categoryMoviesSection.hidden = isCinemaCatalog || matchingMovies.length === 0;
+                categorySeriesSection.hidden = isCinemaCatalog || matchingSeries.length === 0;
+                categoryMoviesTitle.textContent = activeCategory === 'animes'
+                    ? 'Filmes de anime'
+                    : activeCategory === 'desenhos' ? 'Filmes de animação'
+                        : activeCategory === 'minha-lista' ? 'Filmes salvos' : 'Filmes';
+                categorySeriesTitle.textContent = activeCategory === 'animes'
+                    ? 'Séries de anime'
+                    : activeCategory === 'desenhos' ? 'Séries de animação'
+                        : activeCategory === 'minha-lista' ? 'Séries salvas' : 'Séries';
+                categoryMoviesDescription.textContent = matchingMovies.length === 1
+                    ? '1 filme encontrado.'
+                    : `${matchingMovies.length} filmes encontrados.`;
+                categorySeriesDescription.textContent = matchingSeries.length === 1
+                    ? '1 série encontrada.'
+                    : `${matchingSeries.length} séries encontradas.`;
+                const hasCategoryTitles = categoryCards.length > 0;
+                categoryEmptyTitle.textContent = hasCategoryTitles
+                    ? 'Nenhum título encontrado'
+                    : activeCategory === 'minha-lista' ? 'Sua lista está vazia'
+                        : activeCategory === 'animes' ? 'Ainda não há animes no catálogo' : 'Ainda não há títulos nesta categoria';
+                categoryEmptyDescription.textContent = hasCategoryTitles
+                    ? 'Tente mudar a busca ou os filtros para ver outros títulos.'
+                    : activeCategory === 'minha-lista'
+                        ? 'Abra um filme ou série e toque em “Minha lista” para salvá-lo aqui.'
+                        : 'Novos títulos desta categoria aparecerão aqui quando forem adicionados ao catálogo.';
+                const filteredCount = matchingCards.length;
+                if (isCinemaCategory) {
+                    catalogCount.textContent = `${cinemaNowPlaying.length} ${cinemaNowPlaying.length === 1 ? 'filme em cartaz' : 'filmes em cartaz'}`;
+                } else if (isReleaseCategory) {
+                    const releaseCount = getRecentCinemaReleases().length;
+                    catalogCount.textContent = `${releaseCount} ${releaseCount === 1 ? 'lançamento' : 'lançamentos'} recentes ou previstos`;
+                } else {
+                    catalogCount.textContent = `${filteredCount} ${filteredCount === 1 ? 'título encontrado' : 'títulos encontrados'}`
+                        + (categoryCards.length !== filteredCount ? ` de ${categoryCards.length}` : '');
+                }
+            }
+
+            updateHeroMosaic(isHome ? [] : matchingCards);
+
+            if (isHome) {
+                heroActions.hidden = false;
+                featuredMoreDetails.hidden = true;
+                if (!featuredCategoryCard) {
+                    heroTitle.textContent = copy.title;
+                    heroDescription.textContent = copy.description;
+                    featuredDetailsLabel.hidden = true;
+                } else {
+                    featuredDetailsLabel.hidden = !featuredCategoryCard.dataset.video;
+                    featuredDetailsLabel.textContent = '▶ Assistir grátis';
+                }
+            } else {
+                featuredMoreDetails.hidden = !featuredCategoryCard;
+            }
+        }
+
+        function renderSearchResults(query) {
+            searchResults.replaceChildren();
+            const hasQuery = query.trim().length > 0;
+            searchResults.hidden = !hasQuery;
+            searchInput.setAttribute('aria-expanded', String(hasQuery));
+
+            if (!hasQuery) {
+                return [];
+            }
+
+            const matches = getSearchMatches(query);
+            const cinemaMatches = getCinemaSearchMatches(query);
+            if (matches.length === 0 && cinemaMatches.length === 0) {
+                const emptyMessage = document.createElement('p');
+                emptyMessage.className = 'search-empty';
+                const isLoading = cinemaNowState === 'loading' || cinemaComingSoonState === 'loading';
+                const hasError = cinemaNowState === 'error' || cinemaComingSoonState === 'error';
+                emptyMessage.textContent = isLoading
+                    ? 'Buscando também nos catálogos de cinema...'
+                    : hasError
+                        ? `Nenhum título encontrado para "${query.trim()}". A busca de cinema está temporariamente indisponível.`
+                        : `Nenhum filme ou série encontrado para "${query.trim()}".`;
+                searchResults.append(emptyMessage);
+                return matches;
+            }
+
+            matches.slice(0, 6).forEach((card) => {
+                const result = document.createElement('button');
+                const image = card.querySelector('img');
+                const title = card.dataset.title || '';
+                const meta = document.createElement('span');
+                const resultInfo = document.createElement('span');
+                const resultTitle = document.createElement('span');
+                const resultMeta = document.createElement('span');
+                const availability = document.createElement('span');
+
+                result.type = 'button';
+                result.className = 'search-result';
+                result.setAttribute('role', 'option');
+                result.setAttribute('aria-label', `${title}, ${card.dataset.genre || ''}`);
+
+                const poster = document.createElement('img');
+                poster.src = card.dataset.poster || image.src;
+                poster.alt = '';
+                poster.loading = 'lazy';
+                poster.decoding = 'async';
+
+                resultInfo.className = 'search-result-info';
+                resultTitle.className = 'search-result-title';
+                resultTitle.textContent = title;
+                resultMeta.className = 'search-result-meta';
+                meta.textContent = `${card.dataset.genre || ''} · ${card.dataset.year || ''} · ${card.dataset.type === 'serie' ? 'Série' : 'Filme'}`;
+                availability.className = card.dataset.video ? 'search-result-free' : 'search-result-meta';
+                availability.textContent = card.dataset.video ? 'Disponível grátis · Abrir aqui' : 'Ver detalhes';
+
+                resultMeta.append(meta);
+                resultInfo.append(resultTitle, resultMeta, availability);
+                result.append(poster, resultInfo);
+                result.addEventListener('click', () => {
+                    searchResults.hidden = true;
+                    searchInput.setAttribute('aria-expanded', 'false');
+                    openMedia(card);
+                });
+                searchResults.append(result);
+            });
+
+            cinemaMatches.forEach(({ movie, isUpcoming }) => {
+                const resultGroup = document.createElement('div');
+                const result = document.createElement('button');
+                const actions = document.createElement('span');
+                const sessionsLink = document.createElement('a');
+                const streamingLink = document.createElement('a');
+                const netflixLink = document.createElement('a');
+                const resultInfo = document.createElement('span');
+                const resultTitle = document.createElement('span');
+                const resultMeta = document.createElement('span');
+                const availability = document.createElement('span');
+                const poster = movie.posterUrl ? document.createElement('img') : document.createElement('span');
+
+                resultGroup.className = 'cinema-search-result';
+                result.type = 'button';
+                result.className = 'search-result';
+                result.setAttribute('role', 'option');
+                result.setAttribute('aria-label', `${movie.title}, ${isUpcoming ? 'lançamento no cinema' : 'em cartaz'}. Ver detalhes`);
+                if (movie.posterUrl) {
+                    poster.src = movie.posterUrl;
+                    poster.alt = '';
+                    poster.loading = 'lazy';
+                    poster.decoding = 'async';
+                } else {
+                    poster.className = 'search-result-placeholder';
+                    poster.textContent = 'Cinema';
+                    poster.setAttribute('aria-hidden', 'true');
+                }
+
+                resultInfo.className = 'search-result-info';
+                resultTitle.className = 'search-result-title';
+                resultTitle.textContent = movie.title;
+                resultMeta.className = 'search-result-meta';
+                const releaseDate = formatCinemaDate(movie);
+                resultMeta.textContent = `${movie.releaseYear || ''}${releaseDate ? ` · ${releaseDate}` : ''}`;
+                availability.className = `search-result-free ${isUpcoming ? 'search-result-upcoming' : 'search-result-cinema'}`;
+                availability.textContent = isUpcoming
+                    ? `Estreia ${releaseDate || 'prevista'} · Ver no cinema`
+                    : 'Em cartaz · Consultar sessões';
+
+                const detailCard = createCinemaCard(movie, isUpcoming);
+                result.addEventListener('click', () => {
+                    searchResults.hidden = true;
+                    searchInput.setAttribute('aria-expanded', 'false');
+                    openMedia(detailCard);
+                });
+                actions.className = 'cinema-search-actions';
+                sessionsLink.className = 'cinema-search-watch';
+                sessionsLink.href = detailCard.dataset.ticketUrl;
+                sessionsLink.target = '_blank';
+                sessionsLink.rel = 'noopener noreferrer';
+                sessionsLink.textContent = 'Ver sessões';
+                sessionsLink.setAttribute('aria-label', `Consultar sessões de ${movie.title}`);
+                streamingLink.className = 'cinema-search-watch';
+                streamingLink.href = detailCard.dataset.streamingUrl;
+                streamingLink.target = '_blank';
+                streamingLink.rel = 'noopener noreferrer';
+                streamingLink.textContent = 'Onde assistir';
+                streamingLink.setAttribute('aria-label', `Consultar streaming e aluguel oficial para ${movie.title}`);
+                netflixLink.className = 'cinema-search-watch netflix-search-watch';
+                netflixLink.href = detailCard.dataset.netflixUrl;
+                netflixLink.target = '_blank';
+                netflixLink.rel = 'noopener noreferrer';
+                netflixLink.textContent = 'Netflix';
+                netflixLink.setAttribute('aria-label', `Buscar ${movie.title} na Netflix; a disponibilidade pode variar`);
+
+                resultInfo.append(resultTitle, resultMeta, availability);
+                result.append(poster, resultInfo);
+                actions.append(sessionsLink, streamingLink, netflixLink);
+                resultGroup.append(result, actions);
+                searchResults.append(resultGroup);
+            });
+
+            return matches;
+        }
+
+        function filterMovies() {
+            const query = searchInput.value.trim();
+            if (query && activeCategory !== 'home') {
+                activeCategory = 'home';
+            }
+            updateCategoryView();
+            const hasMatch = [...movieCards].some((card) => !card.classList.contains('hidden-card'));
+            const cinemaMatches = query ? getCinemaSearchMatches(query) : [];
+            const hasCinemaMatch = cinemaMatches.length > 0;
+
+            searchStatus.hidden = hasMatch || hasCinemaMatch || !query;
+
+            if (query && !hasMatch) {
+                searchStatus.textContent = hasCinemaMatch
+                    ? 'Os títulos encontrados na busca de cinema não fazem parte do catálogo de reprodução do Cinema em Cia.'
+                    : cinemaNowState === 'loading' || cinemaComingSoonState === 'loading'
+                        ? 'Buscando também nos catálogos de cinema...'
+                        : `Nenhum resultado encontrado para "${searchInput.value.trim()}".`;
+            }
+
+            renderSearchResults(query);
+        }
+
+        function openMedia(card) {
+            selectedCard = card;
+            const type = card.dataset.type === 'serie' ? 'Série' : 'Filme';
+            modalBadge.textContent = type;
+            modalTitle.textContent = card.dataset.title;
+            modalDescription.textContent = card.dataset.description;
+            modalYear.textContent = card.dataset.year;
+            modalRuntime.textContent = card.dataset.runtime;
+            modalGenre.textContent = card.dataset.genre;
+            modalPoster.src = card.dataset.poster;
+            modalPoster.alt = card.dataset.title;
+            updateWatchlistButton();
+            watchlistStatus.hidden = !watchlistStorageError;
+            watchlistStatus.textContent = watchlistStorageError
+                ? 'O navegador não permitiu carregar sua lista salva. Você ainda pode tentar adicionar este título.'
+                : '';
+            const cast = card.dataset.cinema === 'true'
+                ? (card.dataset.cast || '').split(/[,;\n]/).map((name) => name.trim()).filter(Boolean)
+                : titleCast[card.dataset.title] || [];
+            modalCastHeading.textContent = card.dataset.anime === 'true'
+                || (card.dataset.genre || '').includes('Animação')
+                ? 'Vozes principais'
+                : 'Elenco principal';
+            modalCast.replaceChildren();
+            cast.forEach((name) => {
+                const member = document.createElement('li');
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = name;
+                button.addEventListener('click', () => renderActorProfile(name));
+                member.append(button);
+                modalCast.append(member);
+            });
+            if (cast.length === 0) {
+                const unavailable = document.createElement('li');
+                unavailable.textContent = 'Elenco ainda não informado.';
+                modalCast.append(unavailable);
+            }
+            const directors = (card.dataset.directors || '')
+                .split(/[,;\n]/)
+                .map((name) => name.trim())
+                .filter(Boolean);
+            modalDirector.replaceChildren();
+            directors.forEach((name) => {
+                const member = document.createElement('li');
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = name;
+                button.addEventListener('click', () => renderActorProfile(name));
+                member.append(button);
+                modalDirector.append(member);
+            });
+            modalDirectorSection.hidden = directors.length === 0;
+            renderSimilarTitles(card);
+            const backdrop = card.dataset.backdrop || card.dataset.poster;
+            modalContent.style.setProperty('--hero-image', `url("${backdrop}")`);
+            modalContent.scrollTop = 0;
+            showMediaDetails();
+            const hasVideo = Boolean(card.dataset.video);
+            playMediaButton.hidden = !hasVideo;
+            const isCinemaTitle = card.dataset.cinema === 'true';
+            modalCinemaSessions.hidden = !isCinemaTitle || !card.dataset.ticketUrl;
+            modalStreamingSearch.hidden = !isCinemaTitle || !card.dataset.streamingUrl;
+            modalNetflixSearch.hidden = !card.dataset.title;
+            if (card.dataset.title) {
+                modalNetflixSearch.href = card.dataset.netflixUrl || getNetflixSearchUrl(card.dataset.title);
+                modalNetflixSearch.setAttribute('aria-label', `Buscar ${card.dataset.title} na Netflix; a disponibilidade pode variar`);
+            }
+            if (isCinemaTitle) {
+                modalCinemaSessions.href = card.dataset.ticketUrl;
+                modalCinemaSessions.textContent = 'Ver sessões';
+                modalStreamingSearch.href = card.dataset.streamingUrl;
+                modalStreamingSearch.textContent = 'Onde assistir';
+            }
+            availabilityNote.hidden = false;
+            availabilityNote.textContent = hasVideo
+                ? card.dataset.license
+                : isCinemaTitle
+                    ? 'Este filme não tem vídeo gratuito autorizado para reprodução neste site. Consulte sessões ou opções oficiais de streaming.'
+                    : 'Este título é apenas uma referência de catálogo e não tem vídeo disponível para reprodução neste site.';
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        async function playEpisode(episode) {
+            currentEpisode = episode;
+            const episodeCount = Number(selectedCard.dataset.episodeCount || 0);
+            const title = episodeCount
+                ? `${selectedCard.dataset.title} · Episódio ${episode} de ${episodeCount}`
+                : selectedCard.dataset.title;
+            playerTitle.textContent = title;
+            videoPlayer.poster = selectedCard.dataset.poster;
+            videoPlayer.src = selectedCard.dataset.episodeTemplate
+                ? selectedCard.dataset.episodeTemplate.replace('{episode}', String(episode).padStart(2, '0'))
+                : selectedCard.dataset.video;
+            playerStatus.textContent = 'Carregando vídeo...';
+            videoPlayer.load();
+
+            try {
+                await videoPlayer.play();
+            } catch (error) {
+                if (error.name === 'NotAllowedError') {
+                    playerStatus.textContent = 'Pressione reproduzir no controle do player para começar.';
+                } else {
+                    playerStatus.textContent = 'Não foi possível iniciar este vídeo. Tente novamente mais tarde.';
+                    console.error('Falha ao iniciar a reprodução do vídeo.', error);
+                }
+            }
+        }
+
+        async function startPlayback() {
+            if (!selectedCard || !selectedCard.dataset.video) {
+                return;
+            }
+
+            playerModal.classList.remove('hidden');
+            playerModal.setAttribute('aria-hidden', 'false');
+            await playEpisode(1);
+        }
+
+        function closePlayback() {
+            videoPlayer.pause();
+            videoPlayer.removeAttribute('src');
+            videoPlayer.load();
+            playerModal.classList.add('hidden');
+            playerModal.setAttribute('aria-hidden', 'true');
+            playerStatus.textContent = 'Carregando vídeo...';
+        }
+
+        function closeMedia() {
+            if (!playerModal.classList.contains('hidden')) {
+                closePlayback();
+            }
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        movieCards.forEach((card) => {
+            createPosterActions(card);
+            card.addEventListener('click', () => {
+                openMedia(card);
+            });
+        });
+
+        featuredDetails.addEventListener('click', () => {
+            const featuredCard = featuredCategoryCard || [...movieCards].find((card) => card.dataset.video);
+            if (featuredCard) {
+                openMedia(featuredCard);
+                if (featuredCard.dataset.video) {
+                    startPlayback();
+                }
+            }
+        });
+
+        featuredMoreDetails.addEventListener('click', () => {
+            if (featuredCategoryCard) {
+                openMedia(featuredCategoryCard);
+            }
+        });
+
+        function updateWatchlistButton() {
+            const isSaved = Boolean(selectedCard && savedTitles.has(selectedCard.dataset.title));
+            modalWatchlistButton.setAttribute('aria-pressed', String(isSaved));
+            modalWatchlistButton.textContent = isSaved ? '✓ Na minha lista' : '＋ Minha lista';
+            myListCount.textContent = String(savedTitles.size);
+            myListCount.setAttribute('aria-label', `${savedTitles.size} ${savedTitles.size === 1 ? 'título salvo' : 'títulos salvos'}`);
+            const activeProfile = profiles.find((profile) => profile.id === activeProfileId);
+            if (activeProfile) {
+                activeProfileName.textContent = activeProfile.name;
+                activeProfileAvatar.textContent = activeProfile.name.trim().charAt(0).toLocaleUpperCase('pt-BR') || 'P';
+                profileMenuButton.setAttribute('aria-label', `Perfil atual: ${activeProfile.name}. Abrir gerenciador de perfis.`);
+            }
+        }
+
+        function saveProfiles(nextProfiles, nextActiveProfileId = activeProfileId) {
+            try {
+                localStorage.setItem('cinecia-profile-state', JSON.stringify({
+                    profiles: nextProfiles,
+                    activeProfileId: nextActiveProfileId
+                }));
+            } catch (error) {
+                console.error('Não foi possível salvar os perfis neste navegador.', error);
+                profileStatus.textContent = 'Não foi possível salvar. Verifique o espaço disponível e as permissões de armazenamento do navegador.';
+                return false;
+            }
+
+            profiles = nextProfiles;
+            activeProfileId = nextActiveProfileId;
+            savedTitles = new Set(profiles.find((profile) => profile.id === activeProfileId)?.savedTitles || []);
+            profileStatus.textContent = '';
+            return true;
+        }
+
+        function renderProfiles() {
+            profileList.replaceChildren();
+            profiles.forEach((profile) => {
+                const row = document.createElement('div');
+                const selectButton = document.createElement('button');
+                const avatar = document.createElement('span');
+                const name = document.createElement('span');
+
+                row.className = 'profile-row';
+                selectButton.type = 'button';
+                selectButton.className = 'profile-select-button';
+                selectButton.setAttribute('aria-pressed', String(profile.id === activeProfileId));
+                avatar.className = 'profile-avatar profile-list-avatar';
+                avatar.textContent = profile.name.trim().charAt(0).toLocaleUpperCase('pt-BR') || 'P';
+                avatar.style.setProperty('--profile-color', ['#9f6e55', '#54799d', '#725991', '#43806f', '#a17a3e'][profiles.indexOf(profile) % 5]);
+                avatar.setAttribute('aria-hidden', 'true');
+                name.className = 'profile-select-name';
+                name.textContent = profile.name;
+                selectButton.append(avatar, name);
+                selectButton.addEventListener('click', () => {
+                    if (!saveProfiles(profiles, profile.id)) {
+                        return;
+                    }
+                    updateWatchlistButton();
+                    if (activeCategory === 'minha-lista') {
+                        updateCategoryView();
+                    }
+                    profileModal.classList.add('hidden');
+                    profileModal.classList.remove('profile-picker-screen');
+                    profileModal.setAttribute('aria-hidden', 'true');
+                    profileMenuButton.setAttribute('aria-expanded', 'false');
+                    isProfileStartup = false;
+                    isManagingProfiles = false;
+                    profileMenuButton.focus();
+                });
+                row.append(selectButton);
+
+                if (profiles.length > 1 && isManagingProfiles) {
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.className = 'profile-delete-button';
+                    deleteButton.textContent = 'Excluir';
+                    deleteButton.setAttribute('aria-label', `Excluir o perfil ${profile.name}`);
+                    deleteButton.addEventListener('click', () => {
+                        if (!window.confirm(`Excluir o perfil "${profile.name}" e a lista salva nele?`)) {
+                            return;
+                        }
+                        const nextProfiles = profiles.filter((entry) => entry.id !== profile.id);
+                        const nextActiveId = profile.id === activeProfileId ? nextProfiles[0].id : activeProfileId;
+                        if (!saveProfiles(nextProfiles, nextActiveId)) {
+                            return;
+                        }
+                        renderProfiles();
+                        updateWatchlistButton();
+                        if (activeCategory === 'minha-lista') {
+                            updateCategoryView();
+                        }
+                    });
+                    row.append(deleteButton);
+                }
+                profileList.append(row);
+            });
+
+            const atLimit = profiles.length >= 5;
+            profileNameInput.disabled = atLimit;
+            profileCreateForm.querySelector('button[type="submit"]').disabled = atLimit;
+            profileManageToggle.setAttribute('aria-pressed', String(isManagingProfiles));
+            profileManageToggle.textContent = isManagingProfiles ? 'Concluir' : 'Gerenciar perfis';
+            profileManageToggle.hidden = false;
+            profileAddToggle.hidden = isManagingProfiles || atLimit;
+            profileAddToggle.setAttribute('aria-expanded', String(!profileCreateForm.hidden));
+            if (!atLimit && profileStatus.textContent === 'Você já criou o limite de 5 perfis neste navegador.') {
+                profileStatus.textContent = '';
+            }
+        }
+
+        function openProfileManager() {
+            isProfileStartup = false;
+            isManagingProfiles = false;
+            profileCreateForm.hidden = true;
+            profileModal.classList.remove('profile-picker-screen');
+            document.getElementById('closeProfileModal').hidden = false;
+            renderProfiles();
+            profileModal.classList.remove('hidden');
+            profileModal.setAttribute('aria-hidden', 'false');
+            profileMenuButton.setAttribute('aria-expanded', 'true');
+            const firstProfile = profileList.querySelector('.profile-select-button');
+            (firstProfile || profileNameInput).focus();
+        }
+
+        function closeProfileManager() {
+            if (isProfileStartup) {
+                return;
+            }
+            profileModal.classList.add('hidden');
+            profileModal.setAttribute('aria-hidden', 'true');
+            profileMenuButton.setAttribute('aria-expanded', 'false');
+            profileMenuButton.focus();
+        }
+
+        profileMenuButton.addEventListener('click', openProfileManager);
+        document.getElementById('closeProfileModal').addEventListener('click', closeProfileManager);
+        profileManageToggle.addEventListener('click', () => {
+            isManagingProfiles = !isManagingProfiles;
+            profileCreateForm.hidden = true;
+            profileStatus.textContent = '';
+            renderProfiles();
+            profileManageToggle.focus();
+        });
+        profileAddToggle.addEventListener('click', () => {
+            profileCreateForm.hidden = false;
+            profileNameInput.focus();
+            profileAddToggle.setAttribute('aria-expanded', 'true');
+        });
+        profileModal.addEventListener('click', (event) => {
+            if (!isProfileStartup && event.target.dataset.closeProfile === 'true') {
+                closeProfileManager();
+            }
+        });
+        profileCreateForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = profileNameInput.value.trim();
+            if (!name) {
+                profileStatus.textContent = 'Digite um nome para o perfil.';
+                profileNameInput.focus();
+                return;
+            }
+            if (profiles.length >= 5) {
+                profileStatus.textContent = 'Você já criou o limite de 5 perfis neste navegador.';
+                return;
+            }
+            if (profiles.some((profile) => normalizeSearchText(profile.name) === normalizeSearchText(name))) {
+                profileStatus.textContent = 'Já existe um perfil com esse nome.';
+                profileNameInput.focus();
+                return;
+            }
+
+            const newProfile = {
+                id: `profile-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                name: name.slice(0, 20),
+                savedTitles: []
+            };
+            if (!saveProfiles([...profiles, newProfile], newProfile.id)) {
+                return;
+            }
+            profileCreateForm.reset();
+            profileCreateForm.hidden = true;
+            renderProfiles();
+            updateWatchlistButton();
+            if (activeCategory === 'minha-lista') {
+                updateCategoryView();
+            }
+            profileNameInput.focus();
+            if (isProfileStartup) {
+                profileModal.classList.add('hidden');
+                profileModal.classList.remove('profile-picker-screen');
+                profileModal.setAttribute('aria-hidden', 'true');
+                profileMenuButton.setAttribute('aria-expanded', 'false');
+                isProfileStartup = false;
+                profileMenuButton.focus();
+            }
+        });
+
+        function toggleWatchlist() {
+            if (!selectedCard) {
+                return;
+            }
+
+            const title = selectedCard.dataset.title;
+            const nextSavedTitles = new Set(savedTitles);
+            if (nextSavedTitles.has(title)) {
+                nextSavedTitles.delete(title);
+            } else {
+                nextSavedTitles.add(title);
+            }
+
+            const nextProfiles = profiles.map((profile) => profile.id === activeProfileId
+                ? { ...profile, savedTitles: [...nextSavedTitles] }
+                : profile);
+            if (!saveProfiles(nextProfiles)) {
+                watchlistStatus.textContent = 'Não foi possível salvar sua lista. Verifique as permissões de armazenamento do navegador e tente novamente.';
+                watchlistStatus.hidden = false;
+                return;
+            }
+
+            watchlistStorageError = null;
+            watchlistStatus.hidden = true;
+            watchlistStatus.textContent = '';
+            updateWatchlistButton();
+            if (activeCategory === 'minha-lista') {
+                updateCategoryView();
+            }
+        }
+
+        function surpriseMe() {
+            const availableTitles = activeCategory === 'home'
+                ? getUniqueCategoryCards()
+                : getFilteredCategoryCards(getUniqueCategoryCards());
+            const query = activeCategory === 'home' ? normalizeSearchText(searchInput.value.trim()) : '';
+            const matchingTitles = query
+                ? availableTitles.filter((card) => normalizeSearchText([
+                    card.dataset.title,
+                    card.dataset.genre,
+                    card.dataset.year,
+                    card.dataset.description
+                ].join(' ')).includes(query))
+                : availableTitles;
+            const unseenTitles = matchingTitles.filter((card) => card.dataset.title !== selectedCard?.dataset.title);
+            const candidates = unseenTitles.length ? unseenTitles : matchingTitles;
+
+            if (candidates.length === 0) {
+                return;
+            }
+
+            const choice = candidates[Math.floor(Math.random() * candidates.length)];
+            openMedia(choice);
+        }
+
+        modalWatchlistButton.addEventListener('click', toggleWatchlist);
+        surpriseMeButton.addEventListener('click', surpriseMe);
+
+        playMediaButton.addEventListener('click', startPlayback);
+        closePlayerButton.addEventListener('click', closePlayback);
+        videoPlayer.addEventListener('playing', () => {
+            playerStatus.textContent = '';
+        });
+        videoPlayer.addEventListener('waiting', () => {
+            playerStatus.textContent = 'O vídeo está carregando...';
+        });
+        videoPlayer.addEventListener('error', () => {
+            playerStatus.textContent = 'Não foi possível carregar este vídeo. Tente novamente mais tarde.';
+        });
+        videoPlayer.addEventListener('ended', () => {
+            const episodeCount = Number(selectedCard?.dataset.episodeCount || 0);
+            if (currentEpisode < episodeCount) {
+                playEpisode(currentEpisode + 1);
+            } else {
+                playerStatus.textContent = 'Reprodução concluída.';
+            }
+        });
+
+        dismissWelcome.addEventListener('click', () => {
+            welcomeBanner.hidden = true;
+        });
+
+        categoryTabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                activeCategory = tab.dataset.category;
+                navMoreMenu.hidden = true;
+                navMoreToggle.setAttribute('aria-expanded', 'false');
+                searchInput.value = '';
+                catalogSearch.value = '';
+                catalogType.value = 'all';
+                catalogGenre.value = 'all';
+                catalogSort.value = 'recommended';
+                onlyFreeTitles = false;
+                catalogViewButtons.forEach((button) => {
+                    button.setAttribute('aria-pressed', String(button.dataset.catalogView === 'grid'));
+                });
+                searchStatus.hidden = true;
+                filterMovies();
+                updateWatchlistButton();
+                document.getElementById('home').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        navMoreToggle.addEventListener('click', () => {
+            const isOpen = navMoreToggle.getAttribute('aria-expanded') === 'true';
+            navMoreToggle.setAttribute('aria-expanded', String(!isOpen));
+            navMoreMenu.hidden = isOpen;
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!navMore.contains(event.target)) {
+                navMoreMenu.hidden = true;
+                navMoreToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        [catalogSearch, catalogType, catalogGenre, catalogSort].forEach((control) => {
+            control.addEventListener(control === catalogSearch ? 'input' : 'change', updateCategoryView);
+        });
+
+        quickTypeFilters.forEach((button) => {
+            button.addEventListener('click', () => {
+                catalogType.value = button.dataset.quickType;
+                updateCategoryView();
+            });
+        });
+
+        quickFreeFilter.addEventListener('click', () => {
+            onlyFreeTitles = activeCategory === 'gratis' ? true : !onlyFreeTitles;
+            updateCategoryView();
+        });
+
+        quickGenreFilters.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-quick-genre]');
+            if (button) {
+                catalogGenre.value = button.dataset.quickGenre;
+                updateCategoryView();
+            }
+        });
+
+        catalogViewButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                catalogViewButtons.forEach((viewButton) => {
+                    viewButton.setAttribute('aria-pressed', String(viewButton === button));
+                });
+                updateCategoryView();
+            });
+        });
+
+        catalogReset.addEventListener('click', () => {
+            catalogSearch.value = '';
+            catalogType.value = 'all';
+            catalogGenre.value = 'all';
+            catalogSort.value = 'recommended';
+            onlyFreeTitles = false;
+            catalogViewButtons.forEach((button) => {
+                button.setAttribute('aria-pressed', String(button.dataset.catalogView === 'grid'));
+            });
+            updateCategoryView();
+            catalogSearch.focus();
+        });
+
+        cinemaCitySelect.addEventListener('change', () => {
+            const city = getSelectedCinemaCity();
+            if (!city) {
+                return;
+            }
+
+            try {
+                localStorage.setItem('cinecia-cinema-city', city.id);
+                cinemaCityStatus.textContent = '';
+            } catch (error) {
+                cinemaCityStatus.textContent = 'A cidade foi selecionada, mas não pôde ser salva neste navegador.';
+                console.error('Não foi possível salvar a cidade dos cinemas.', error);
+            }
+            loadCinemaCatalogs();
+        });
+        cinemaRetry.addEventListener('click', () => {
+            if (cinemaCityState === 'error') {
+                loadCinemaCities();
+            } else {
+                loadCinemaCatalogs();
+            }
+        });
+        closeButton.addEventListener('click', closeMedia);
+        actorProfileBack.addEventListener('click', showMediaDetails);
+        modal.addEventListener('click', (event) => {
+            if (event.target.dataset.close === 'true') {
+                closeMedia();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                if (navMoreToggle.getAttribute('aria-expanded') === 'true') {
+                    navMoreMenu.hidden = true;
+                    navMoreToggle.setAttribute('aria-expanded', 'false');
+                    navMoreToggle.focus();
+                    return;
+                }
+                if (!playerModal.classList.contains('hidden')) {
+                    closePlayback();
+                } else if (!profileModal.classList.contains('hidden')) {
+                    if (!isProfileStartup) {
+                        closeProfileManager();
+                    }
+                } else if (!modal.classList.contains('hidden')) {
+                    closeMedia();
+                }
+            }
+        });
+
+        searchInput.addEventListener('input', filterMovies);
+        searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const firstResult = searchResults.querySelector('.search-result');
+                if (firstResult) {
+                    event.preventDefault();
+                    firstResult.click();
+                }
+            }
+
+            if (event.key === 'ArrowDown') {
+                const firstResult = searchResults.querySelector('.search-result');
+                if (firstResult) {
+                    event.preventDefault();
+                    firstResult.focus();
+                }
+            }
+
+            if (event.key === 'Escape') {
+                searchResults.hidden = true;
+                searchInput.setAttribute('aria-expanded', 'false');
+            }
+        });
+        searchResults.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                const results = [...searchResults.querySelectorAll('.search-result')];
+                const currentIndex = results.indexOf(document.activeElement);
+                const nextIndex = event.key === 'ArrowDown'
+                    ? Math.min(currentIndex + 1, results.length - 1)
+                    : currentIndex <= 0 ? -1 : currentIndex - 1;
+                event.preventDefault();
+
+                if (nextIndex === -1) {
+                    searchInput.focus();
+                } else {
+                    results[nextIndex].focus();
+                }
+            } else if (event.key === 'Escape') {
+                searchResults.hidden = true;
+                searchInput.setAttribute('aria-expanded', 'false');
+                searchInput.focus();
+            }
+        });
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.search-box')) {
+                searchResults.hidden = true;
+                searchInput.setAttribute('aria-expanded', 'false');
+            }
+        });
+        filterMovies();
+        updateWatchlistButton();
+        renderProfiles();
+        document.getElementById('closeProfileModal').hidden = true;
+        profileCreateForm.hidden = true;
+        loadCinemaCities();
+        profileModal.setAttribute('aria-hidden', 'false');
+        profileList.querySelector('.profile-select-button')?.focus();
+    </script>
+</body>
+</html>

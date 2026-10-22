@@ -1,0 +1,214 @@
+/* =========================================================
+   cadastro.css — Site 1
+   ========================================================= */
+
+/* ---------- VARIÁVEIS: paleta e fonte do projeto ----------
+   Troque os valores aqui para mudar o visual da página toda.
+   Contrastes calculados: texto #16262B sobre #EEF3F2 e
+   branco sobre #0B5563 passam de 7:1 (nível AAA). */
+:root {
+  --cor-fundo: #EEF3F2;        /* fundo da página */
+  --cor-cartao: #FFFFFF;       /* fundo do formulário */
+  --cor-texto: #16262B;        /* texto principal */
+  --cor-apoio: #45585D;        /* texto de apoio (contraste 6:1) */
+  --cor-primaria: #0B5563;     /* botão, links, títulos */
+  --cor-primaria-escura: #083B45; /* hover do botão */
+  --cor-destaque: #F2A900;     /* faixa do topo e foco */
+  --cor-borda: #7A8C90;        /* borda dos campos */
+  --fonte: "Lexend", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- RESET BÁSICO ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;      /* mantém o rodapé embaixo em páginas curtas */
+  font-family: var(--fonte);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+/* ---------- ACESSIBILIDADE: link "pular para o conteúdo" ----------
+   Fica escondido até receber foco pelo Tab. */
+.pular-menu {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: .6rem 1rem;
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: 6px;
+  z-index: 10;
+}
+.pular-menu:focus { top: 1rem; }
+
+/* ---------- FOCO VISÍVEL (navegação por teclado) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--cor-primaria);
+  outline-offset: 3px;
+}
+
+/* ---------- CABEÇALHO ---------- */
+.topo {
+  background: var(--cor-cartao);
+  border-bottom: 4px solid var(--cor-destaque);
+}
+.topo__conteudo {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: .75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menu a {
+  color: var(--cor-primaria);
+  font-weight: 500;
+  text-decoration: none;
+  padding: .25rem 0;
+  border-bottom: 2px solid transparent;
+}
+.menu a:hover,
+.menu a[aria-current="page"] {
+  border-bottom-color: var(--cor-primaria);
+}
+
+/* ---------- CONTEÚDO PRINCIPAL ---------- */
+main {
+  flex: 1;                      /* ocupa o espaço restante da tela */
+  padding: 2.5rem 1.25rem;
+}
+
+.cadastro {
+  max-width: 520px;
+  margin: 0 auto;
+  background: var(--cor-cartao);
+  padding: 2.5rem;
+  border-radius: 14px;
+  border: 1px solid #D5DEDD;
+}
+
+/* Hierarquia visual: título > texto de apoio > campos */
+h1 {
+  margin: 0 0 .5rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--cor-primaria);
+}
+.apoio {
+  margin: 0 0 1.75rem;
+  color: var(--cor-apoio);
+}
+.obrigatorio-marca { color: #A3260F; font-weight: 700; }
+
+/* ---------- FORMULÁRIO ---------- */
+fieldset {
+  border: 0;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+legend {
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.campo { margin-bottom: 1.1rem; }
+
+label {
+  display: block;
+  margin-bottom: .35rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: .75rem .9rem;
+  font: inherit;
+  color: var(--cor-texto);
+  background: #fff;
+  border: 2px solid var(--cor-borda);
+  border-radius: 8px;
+}
+input::placeholder { color: #5F7075; }
+input:focus { border-color: var(--cor-primaria); }
+
+/* Mostra erro só depois que a pessoa mexeu no campo */
+input:user-invalid { border-color: #A3260F; }
+
+/* ---------- BOTÃO DE ENVIO ---------- */
+.botao {
+  width: 100%;
+  padding: .95rem 1.25rem;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--cor-primaria);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color .2s, transform .2s;
+}
+/* Efeito de hover */
+.botao:hover {
+  background: var(--cor-primaria-escura);
+  transform: translateY(-2px);  
+}
+.botao:active { transform: translateY(0); }
+
+/* ---------- RODAPÉ ---------- */
+.rodape {
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--cor-apoio);
+  font-size: .9rem;
+}
+.rodape p { margin: 0; }
+
+/* ---------- RESPEITA QUEM DESATIVA ANIMAÇÕES ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .botao { transition: none; }
+  .botao:hover { transform: none; }
+}
+
+/* =========================================================
+   RESPONSIVO
+   Tablet e desktop usam o layout base acima (cartão centralizado).
+   Até 767px (celular): menos espaço lateral e menu empilhado.
+   ========================================================= */
+@media (max-width: 767px) {
+  .topo__conteudo {
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .menu { gap: 1rem; }
+
+  main { padding: 1rem .75rem 2rem; }
+
+  .cadastro {
+    padding: 1.5rem 1.25rem;
+    border-radius: 10px;
+  }
+  h1 { font-size: 1.6rem; }
+
+  /* 16px evita o zoom automático do iPhone ao tocar no campo */
+  input { font-size: 1rem; }
+}
